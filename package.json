@@ -1,6 +1,6 @@
 {
   "name": "@market-4-test/contract-ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "private": false,
   "files": [
     "dist"
