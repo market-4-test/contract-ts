@@ -213,9 +213,9 @@ export interface DeleteTagsResponse {
  */
 export interface CheckAvailableTagNamesResponse {
     /**
-     * @generated from protobuf field: repeated catalog.StatusTag list = 1
+     * @generated from protobuf field: repeated bool list = 1
      */
-    list: StatusTag[];
+    list: boolean[];
 }
 // @generated message type with reflection information, may provide speed optimized methods
 class Tag$Type extends MessageType<Tag> {
@@ -1129,7 +1129,7 @@ export const DeleteTagsResponse = new DeleteTagsResponse$Type();
 class CheckAvailableTagNamesResponse$Type extends MessageType<CheckAvailableTagNamesResponse> {
     constructor() {
         super("catalog.CheckAvailableTagNamesResponse", [
-            { no: 1, name: "list", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => StatusTag }
+            { no: 1, name: "list", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 8 /*ScalarType.BOOL*/ }
         ]);
     }
     create(value?: PartialMessage<CheckAvailableTagNamesResponse>): CheckAvailableTagNamesResponse {
@@ -1144,8 +1144,12 @@ class CheckAvailableTagNamesResponse$Type extends MessageType<CheckAvailableTagN
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* repeated catalog.StatusTag list */ 1:
-                    message.list.push(StatusTag.internalBinaryRead(reader, reader.uint32(), options));
+                case /* repeated bool list */ 1:
+                    if (wireType === WireType.LengthDelimited)
+                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
+                            message.list.push(reader.bool());
+                    else
+                        message.list.push(reader.bool());
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -1159,9 +1163,13 @@ class CheckAvailableTagNamesResponse$Type extends MessageType<CheckAvailableTagN
         return message;
     }
     internalBinaryWrite(message: CheckAvailableTagNamesResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* repeated catalog.StatusTag list = 1; */
-        for (let i = 0; i < message.list.length; i++)
-            StatusTag.internalBinaryWrite(message.list[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* repeated bool list = 1; */
+        if (message.list.length) {
+            writer.tag(1, WireType.LengthDelimited).fork();
+            for (let i = 0; i < message.list.length; i++)
+                writer.bool(message.list[i]);
+            writer.join();
+        }
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
