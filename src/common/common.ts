@@ -18,6 +18,10 @@ export interface GetPaginateParams {
      * @generated from protobuf field: int32 page = 1
      */
     page: number;
+    /**
+     * @generated from protobuf field: int32 limit = 2
+     */
+    limit: number;
 }
 /**
  * @generated from protobuf message common.PaginateMeta
@@ -35,6 +39,18 @@ export interface PaginateMeta {
      * @generated from protobuf field: int32 total = 3
      */
     total: number;
+    /**
+     * @generated from protobuf field: int32 total_pages = 4
+     */
+    totalPages: number;
+    /**
+     * @generated from protobuf field: bool has_next_page = 5
+     */
+    hasNextPage: boolean;
+    /**
+     * @generated from protobuf field: bool has_previous_page = 6
+     */
+    hasPreviousPage: boolean;
 }
 /**
  * @generated from protobuf message common.GetOffsetParams
@@ -84,12 +100,14 @@ export interface ValidationErrors {
 class GetPaginateParams$Type extends MessageType<GetPaginateParams> {
     constructor() {
         super("common.GetPaginateParams", [
-            { no: 1, name: "page", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+            { no: 1, name: "page", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 2, name: "limit", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
         ]);
     }
     create(value?: PartialMessage<GetPaginateParams>): GetPaginateParams {
         const message = globalThis.Object.create((this.messagePrototype!));
         message.page = 0;
+        message.limit = 0;
         if (value !== undefined)
             reflectionMergePartial<GetPaginateParams>(this, message, value);
         return message;
@@ -101,6 +119,9 @@ class GetPaginateParams$Type extends MessageType<GetPaginateParams> {
             switch (fieldNo) {
                 case /* int32 page */ 1:
                     message.page = reader.int32();
+                    break;
+                case /* int32 limit */ 2:
+                    message.limit = reader.int32();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -117,6 +138,9 @@ class GetPaginateParams$Type extends MessageType<GetPaginateParams> {
         /* int32 page = 1; */
         if (message.page !== 0)
             writer.tag(1, WireType.Varint).int32(message.page);
+        /* int32 limit = 2; */
+        if (message.limit !== 0)
+            writer.tag(2, WireType.Varint).int32(message.limit);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -133,7 +157,10 @@ class PaginateMeta$Type extends MessageType<PaginateMeta> {
         super("common.PaginateMeta", [
             { no: 1, name: "per_page", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
             { no: 2, name: "current_page", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
-            { no: 3, name: "total", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+            { no: 3, name: "total", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 4, name: "total_pages", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 5, name: "has_next_page", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
+            { no: 6, name: "has_previous_page", kind: "scalar", T: 8 /*ScalarType.BOOL*/ }
         ]);
     }
     create(value?: PartialMessage<PaginateMeta>): PaginateMeta {
@@ -141,6 +168,9 @@ class PaginateMeta$Type extends MessageType<PaginateMeta> {
         message.perPage = 0;
         message.currentPage = 0;
         message.total = 0;
+        message.totalPages = 0;
+        message.hasNextPage = false;
+        message.hasPreviousPage = false;
         if (value !== undefined)
             reflectionMergePartial<PaginateMeta>(this, message, value);
         return message;
@@ -158,6 +188,15 @@ class PaginateMeta$Type extends MessageType<PaginateMeta> {
                     break;
                 case /* int32 total */ 3:
                     message.total = reader.int32();
+                    break;
+                case /* int32 total_pages */ 4:
+                    message.totalPages = reader.int32();
+                    break;
+                case /* bool has_next_page */ 5:
+                    message.hasNextPage = reader.bool();
+                    break;
+                case /* bool has_previous_page */ 6:
+                    message.hasPreviousPage = reader.bool();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -180,6 +219,15 @@ class PaginateMeta$Type extends MessageType<PaginateMeta> {
         /* int32 total = 3; */
         if (message.total !== 0)
             writer.tag(3, WireType.Varint).int32(message.total);
+        /* int32 total_pages = 4; */
+        if (message.totalPages !== 0)
+            writer.tag(4, WireType.Varint).int32(message.totalPages);
+        /* bool has_next_page = 5; */
+        if (message.hasNextPage !== false)
+            writer.tag(5, WireType.Varint).bool(message.hasNextPage);
+        /* bool has_previous_page = 6; */
+        if (message.hasPreviousPage !== false)
+            writer.tag(6, WireType.Varint).bool(message.hasPreviousPage);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
