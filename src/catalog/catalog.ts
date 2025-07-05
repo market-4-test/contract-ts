@@ -3,13 +3,15 @@
 // tslint:disable
 import { ToggleAttachProductsToTagsParams } from "./products";
 import { ToggleAttachProductsToBrandsParams } from "./products";
+import { CommonToggleAttachProductsResponse } from "./products";
 import { ToggleAttachProductsToCategoryParams } from "./products";
 import { CheckProductAvailableSlugParams } from "./products";
 import { UpdateProductsPricesResponse } from "./products";
 import { UpdateProductsPricesParams } from "./products";
 import { UpdateProductsStocksResponse } from "./products";
 import { UpdateProductsStocksParams } from "./products";
-import { UpdateProductStatusParams } from "./products";
+import { UpdateProductsStatusResponse } from "./products";
+import { UpdateProductsStatusParams } from "./products";
 import { UpdateProductMetaParams } from "./products";
 import { CreateProductParams } from "./products";
 import { Product } from "./products";
@@ -116,11 +118,14 @@ export const Catalog = new ServiceType("catalog.Catalog", [
     { name: "GetProductByUuid", options: {}, I: GetProductByUuidParams, O: Product },
     { name: "CreateProduct", options: {}, I: CreateProductParams, O: Product },
     { name: "UpdateProduct", options: {}, I: UpdateProductMetaParams, O: Product },
-    { name: "UpdateProductStatus", options: {}, I: UpdateProductStatusParams, O: Status },
+    { name: "UpdateProductsStatus", options: {}, I: UpdateProductsStatusParams, O: UpdateProductsStatusResponse },
     { name: "UpdateProductsStocks", options: {}, I: UpdateProductsStocksParams, O: UpdateProductsStocksResponse },
     { name: "UpdateProductsPrices", options: {}, I: UpdateProductsPricesParams, O: UpdateProductsPricesResponse },
     { name: "CheckProductAvailableSlug", options: {}, I: CheckProductAvailableSlugParams, O: Status },
-    { name: "ToggleAttachProductsToCategory", options: {}, I: ToggleAttachProductsToCategoryParams, O: Status },
-    { name: "ToggleAttachProductsToBrands", options: {}, I: ToggleAttachProductsToBrandsParams, O: Status },
-    { name: "ToggleAttachProductsToTags", options: {}, I: ToggleAttachProductsToTagsParams, O: Status }
+    { name: "AttachProductsToCategory", options: {}, I: ToggleAttachProductsToCategoryParams, O: CommonToggleAttachProductsResponse },
+    { name: "DetachProductsToCategory", options: {}, I: ToggleAttachProductsToCategoryParams, O: CommonToggleAttachProductsResponse },
+    { name: "AttachProductsToBrands", options: {}, I: ToggleAttachProductsToBrandsParams, O: CommonToggleAttachProductsResponse },
+    { name: "DetachProductsToBrands", options: {}, I: ToggleAttachProductsToBrandsParams, O: CommonToggleAttachProductsResponse },
+    { name: "AttachProductsToTags", options: {}, I: ToggleAttachProductsToTagsParams, O: CommonToggleAttachProductsResponse },
+    { name: "DetachProductsToTags", options: {}, I: ToggleAttachProductsToTagsParams, O: CommonToggleAttachProductsResponse }
 ]);

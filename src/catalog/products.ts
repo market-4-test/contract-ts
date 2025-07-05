@@ -94,9 +94,9 @@ export interface ProductShort {
      */
     meta?: ProductMeta;
     /**
-     * @generated from protobuf field: catalog.ProductImage images = 2
+     * @generated from protobuf field: bytes image = 2
      */
-    images?: ProductImage;
+    image: Uint8Array;
 }
 /**
  * @generated from protobuf message catalog.GetProductsMeta
@@ -307,9 +307,9 @@ export interface UpdateProductMetaParams {
     data?: UpsertProductMetaParams;
 }
 /**
- * @generated from protobuf message catalog.UpdateProductStatusParams
+ * @generated from protobuf message catalog.UpdateProductsStatusParams
  */
-export interface UpdateProductStatusParams {
+export interface UpdateProductsStatusParams {
     /**
      * @generated from protobuf field: catalog.ProductStatus status = 1
      */
@@ -318,6 +318,28 @@ export interface UpdateProductStatusParams {
      * @generated from protobuf field: repeated bytes uuids = 2
      */
     uuids: Uint8Array[];
+}
+/**
+ * @generated from protobuf message catalog.UpdateProductsStatus
+ */
+export interface UpdateProductsStatus {
+    /**
+     * @generated from protobuf field: bytes uuids = 1
+     */
+    uuids: Uint8Array;
+    /**
+     * @generated from protobuf field: bool status = 2
+     */
+    status: boolean;
+}
+/**
+ * @generated from protobuf message catalog.UpdateProductsStatusResponse
+ */
+export interface UpdateProductsStatusResponse {
+    /**
+     * @generated from protobuf field: catalog.UpdateProductsStatus statuses = 1
+     */
+    statuses?: UpdateProductsStatus;
 }
 /**
  * @generated from protobuf message catalog.UpdateProductPriceParams
@@ -458,6 +480,28 @@ export interface ToggleAttachProductsToCategoryParams {
      * @generated from protobuf field: catalog.ToggleAttachProductsToCategories list = 1
      */
     list?: ToggleAttachProductsToCategories;
+}
+/**
+ * @generated from protobuf message catalog.CommonToggleAttachProductStatus
+ */
+export interface CommonToggleAttachProductStatus {
+    /**
+     * @generated from protobuf field: bytes product_uuid = 1
+     */
+    productUuid: Uint8Array;
+    /**
+     * @generated from protobuf field: bool status = 2
+     */
+    status: boolean;
+}
+/**
+ * @generated from protobuf message catalog.CommonToggleAttachProductsResponse
+ */
+export interface CommonToggleAttachProductsResponse {
+    /**
+     * @generated from protobuf field: catalog.CommonToggleAttachProductStatus statuses = 1
+     */
+    statuses?: CommonToggleAttachProductStatus;
 }
 /**
  * @generated from protobuf message catalog.ToggleAttachProductsToBrands
@@ -789,11 +833,12 @@ class ProductShort$Type extends MessageType<ProductShort> {
     constructor() {
         super("catalog.ProductShort", [
             { no: 1, name: "meta", kind: "message", T: () => ProductMeta },
-            { no: 2, name: "images", kind: "message", T: () => ProductImage }
+            { no: 2, name: "image", kind: "scalar", T: 12 /*ScalarType.BYTES*/ }
         ]);
     }
     create(value?: PartialMessage<ProductShort>): ProductShort {
         const message = globalThis.Object.create((this.messagePrototype!));
+        message.image = new Uint8Array(0);
         if (value !== undefined)
             reflectionMergePartial<ProductShort>(this, message, value);
         return message;
@@ -806,8 +851,8 @@ class ProductShort$Type extends MessageType<ProductShort> {
                 case /* catalog.ProductMeta meta */ 1:
                     message.meta = ProductMeta.internalBinaryRead(reader, reader.uint32(), options, message.meta);
                     break;
-                case /* catalog.ProductImage images */ 2:
-                    message.images = ProductImage.internalBinaryRead(reader, reader.uint32(), options, message.images);
+                case /* bytes image */ 2:
+                    message.image = reader.bytes();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -824,9 +869,9 @@ class ProductShort$Type extends MessageType<ProductShort> {
         /* catalog.ProductMeta meta = 1; */
         if (message.meta)
             ProductMeta.internalBinaryWrite(message.meta, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
-        /* catalog.ProductImage images = 2; */
-        if (message.images)
-            ProductImage.internalBinaryWrite(message.images, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
+        /* bytes image = 2; */
+        if (message.image.length)
+            writer.tag(2, WireType.LengthDelimited).bytes(message.image);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -1720,22 +1765,22 @@ class UpdateProductMetaParams$Type extends MessageType<UpdateProductMetaParams> 
  */
 export const UpdateProductMetaParams = new UpdateProductMetaParams$Type();
 // @generated message type with reflection information, may provide speed optimized methods
-class UpdateProductStatusParams$Type extends MessageType<UpdateProductStatusParams> {
+class UpdateProductsStatusParams$Type extends MessageType<UpdateProductsStatusParams> {
     constructor() {
-        super("catalog.UpdateProductStatusParams", [
+        super("catalog.UpdateProductsStatusParams", [
             { no: 1, name: "status", kind: "enum", T: () => ["catalog.ProductStatus", ProductStatus] },
             { no: 2, name: "uuids", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 12 /*ScalarType.BYTES*/ }
         ]);
     }
-    create(value?: PartialMessage<UpdateProductStatusParams>): UpdateProductStatusParams {
+    create(value?: PartialMessage<UpdateProductsStatusParams>): UpdateProductsStatusParams {
         const message = globalThis.Object.create((this.messagePrototype!));
         message.status = 0;
         message.uuids = [];
         if (value !== undefined)
-            reflectionMergePartial<UpdateProductStatusParams>(this, message, value);
+            reflectionMergePartial<UpdateProductsStatusParams>(this, message, value);
         return message;
     }
-    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: UpdateProductStatusParams): UpdateProductStatusParams {
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: UpdateProductsStatusParams): UpdateProductsStatusParams {
         let message = target ?? this.create(), end = reader.pos + length;
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
@@ -1757,7 +1802,7 @@ class UpdateProductStatusParams$Type extends MessageType<UpdateProductStatusPara
         }
         return message;
     }
-    internalBinaryWrite(message: UpdateProductStatusParams, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+    internalBinaryWrite(message: UpdateProductsStatusParams, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
         /* catalog.ProductStatus status = 1; */
         if (message.status !== 0)
             writer.tag(1, WireType.Varint).int32(message.status);
@@ -1771,9 +1816,110 @@ class UpdateProductStatusParams$Type extends MessageType<UpdateProductStatusPara
     }
 }
 /**
- * @generated MessageType for protobuf message catalog.UpdateProductStatusParams
+ * @generated MessageType for protobuf message catalog.UpdateProductsStatusParams
  */
-export const UpdateProductStatusParams = new UpdateProductStatusParams$Type();
+export const UpdateProductsStatusParams = new UpdateProductsStatusParams$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class UpdateProductsStatus$Type extends MessageType<UpdateProductsStatus> {
+    constructor() {
+        super("catalog.UpdateProductsStatus", [
+            { no: 1, name: "uuids", kind: "scalar", T: 12 /*ScalarType.BYTES*/ },
+            { no: 2, name: "status", kind: "scalar", T: 8 /*ScalarType.BOOL*/ }
+        ]);
+    }
+    create(value?: PartialMessage<UpdateProductsStatus>): UpdateProductsStatus {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.uuids = new Uint8Array(0);
+        message.status = false;
+        if (value !== undefined)
+            reflectionMergePartial<UpdateProductsStatus>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: UpdateProductsStatus): UpdateProductsStatus {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* bytes uuids */ 1:
+                    message.uuids = reader.bytes();
+                    break;
+                case /* bool status */ 2:
+                    message.status = reader.bool();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: UpdateProductsStatus, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* bytes uuids = 1; */
+        if (message.uuids.length)
+            writer.tag(1, WireType.LengthDelimited).bytes(message.uuids);
+        /* bool status = 2; */
+        if (message.status !== false)
+            writer.tag(2, WireType.Varint).bool(message.status);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message catalog.UpdateProductsStatus
+ */
+export const UpdateProductsStatus = new UpdateProductsStatus$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class UpdateProductsStatusResponse$Type extends MessageType<UpdateProductsStatusResponse> {
+    constructor() {
+        super("catalog.UpdateProductsStatusResponse", [
+            { no: 1, name: "statuses", kind: "message", T: () => UpdateProductsStatus }
+        ]);
+    }
+    create(value?: PartialMessage<UpdateProductsStatusResponse>): UpdateProductsStatusResponse {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        if (value !== undefined)
+            reflectionMergePartial<UpdateProductsStatusResponse>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: UpdateProductsStatusResponse): UpdateProductsStatusResponse {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* catalog.UpdateProductsStatus statuses */ 1:
+                    message.statuses = UpdateProductsStatus.internalBinaryRead(reader, reader.uint32(), options, message.statuses);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: UpdateProductsStatusResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* catalog.UpdateProductsStatus statuses = 1; */
+        if (message.statuses)
+            UpdateProductsStatus.internalBinaryWrite(message.statuses, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message catalog.UpdateProductsStatusResponse
+ */
+export const UpdateProductsStatusResponse = new UpdateProductsStatusResponse$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class UpdateProductPriceParams$Type extends MessageType<UpdateProductPriceParams> {
     constructor() {
@@ -2401,6 +2547,107 @@ class ToggleAttachProductsToCategoryParams$Type extends MessageType<ToggleAttach
  * @generated MessageType for protobuf message catalog.ToggleAttachProductsToCategoryParams
  */
 export const ToggleAttachProductsToCategoryParams = new ToggleAttachProductsToCategoryParams$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class CommonToggleAttachProductStatus$Type extends MessageType<CommonToggleAttachProductStatus> {
+    constructor() {
+        super("catalog.CommonToggleAttachProductStatus", [
+            { no: 1, name: "product_uuid", kind: "scalar", T: 12 /*ScalarType.BYTES*/ },
+            { no: 2, name: "status", kind: "scalar", T: 8 /*ScalarType.BOOL*/ }
+        ]);
+    }
+    create(value?: PartialMessage<CommonToggleAttachProductStatus>): CommonToggleAttachProductStatus {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.productUuid = new Uint8Array(0);
+        message.status = false;
+        if (value !== undefined)
+            reflectionMergePartial<CommonToggleAttachProductStatus>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: CommonToggleAttachProductStatus): CommonToggleAttachProductStatus {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* bytes product_uuid */ 1:
+                    message.productUuid = reader.bytes();
+                    break;
+                case /* bool status */ 2:
+                    message.status = reader.bool();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: CommonToggleAttachProductStatus, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* bytes product_uuid = 1; */
+        if (message.productUuid.length)
+            writer.tag(1, WireType.LengthDelimited).bytes(message.productUuid);
+        /* bool status = 2; */
+        if (message.status !== false)
+            writer.tag(2, WireType.Varint).bool(message.status);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message catalog.CommonToggleAttachProductStatus
+ */
+export const CommonToggleAttachProductStatus = new CommonToggleAttachProductStatus$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class CommonToggleAttachProductsResponse$Type extends MessageType<CommonToggleAttachProductsResponse> {
+    constructor() {
+        super("catalog.CommonToggleAttachProductsResponse", [
+            { no: 1, name: "statuses", kind: "message", T: () => CommonToggleAttachProductStatus }
+        ]);
+    }
+    create(value?: PartialMessage<CommonToggleAttachProductsResponse>): CommonToggleAttachProductsResponse {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        if (value !== undefined)
+            reflectionMergePartial<CommonToggleAttachProductsResponse>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: CommonToggleAttachProductsResponse): CommonToggleAttachProductsResponse {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* catalog.CommonToggleAttachProductStatus statuses */ 1:
+                    message.statuses = CommonToggleAttachProductStatus.internalBinaryRead(reader, reader.uint32(), options, message.statuses);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: CommonToggleAttachProductsResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* catalog.CommonToggleAttachProductStatus statuses = 1; */
+        if (message.statuses)
+            CommonToggleAttachProductStatus.internalBinaryWrite(message.statuses, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message catalog.CommonToggleAttachProductsResponse
+ */
+export const CommonToggleAttachProductsResponse = new CommonToggleAttachProductsResponse$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class ToggleAttachProductsToBrands$Type extends MessageType<ToggleAttachProductsToBrands> {
     constructor() {

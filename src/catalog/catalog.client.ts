@@ -6,13 +6,15 @@ import type { ServiceInfo } from "@protobuf-ts/runtime-rpc";
 import { Catalog } from "./catalog";
 import type { ToggleAttachProductsToTagsParams } from "./products";
 import type { ToggleAttachProductsToBrandsParams } from "./products";
+import type { CommonToggleAttachProductsResponse } from "./products";
 import type { ToggleAttachProductsToCategoryParams } from "./products";
 import type { CheckProductAvailableSlugParams } from "./products";
 import type { UpdateProductsPricesResponse } from "./products";
 import type { UpdateProductsPricesParams } from "./products";
 import type { UpdateProductsStocksResponse } from "./products";
 import type { UpdateProductsStocksParams } from "./products";
-import type { UpdateProductStatusParams } from "./products";
+import type { UpdateProductsStatusResponse } from "./products";
+import type { UpdateProductsStatusParams } from "./products";
 import type { UpdateProductMetaParams } from "./products";
 import type { CreateProductParams } from "./products";
 import type { Product } from "./products";
@@ -250,9 +252,9 @@ export interface ICatalogClient {
      */
     updateProduct(input: UpdateProductMetaParams, options?: RpcOptions): UnaryCall<UpdateProductMetaParams, Product>;
     /**
-     * @generated from protobuf rpc: UpdateProductStatus
+     * @generated from protobuf rpc: UpdateProductsStatus
      */
-    updateProductStatus(input: UpdateProductStatusParams, options?: RpcOptions): UnaryCall<UpdateProductStatusParams, Status>;
+    updateProductsStatus(input: UpdateProductsStatusParams, options?: RpcOptions): UnaryCall<UpdateProductsStatusParams, UpdateProductsStatusResponse>;
     /**
      * @generated from protobuf rpc: UpdateProductsStocks
      */
@@ -266,23 +268,31 @@ export interface ICatalogClient {
      */
     checkProductAvailableSlug(input: CheckProductAvailableSlugParams, options?: RpcOptions): UnaryCall<CheckProductAvailableSlugParams, Status>;
     /**
-     * TODO: rework to many statuses
-     *
-     * @generated from protobuf rpc: ToggleAttachProductsToCategory
+     * @generated from protobuf rpc: AttachProductsToCategory
      */
-    toggleAttachProductsToCategory(input: ToggleAttachProductsToCategoryParams, options?: RpcOptions): UnaryCall<ToggleAttachProductsToCategoryParams, Status>;
+    attachProductsToCategory(input: ToggleAttachProductsToCategoryParams, options?: RpcOptions): UnaryCall<ToggleAttachProductsToCategoryParams, CommonToggleAttachProductsResponse>;
     /**
-     * TODO: rework to many statuses
-     *
-     * @generated from protobuf rpc: ToggleAttachProductsToBrands
+     * @generated from protobuf rpc: DetachProductsToCategory
      */
-    toggleAttachProductsToBrands(input: ToggleAttachProductsToBrandsParams, options?: RpcOptions): UnaryCall<ToggleAttachProductsToBrandsParams, Status>;
+    detachProductsToCategory(input: ToggleAttachProductsToCategoryParams, options?: RpcOptions): UnaryCall<ToggleAttachProductsToCategoryParams, CommonToggleAttachProductsResponse>;
     /**
-     * TODO: rework to many statuses
-     *
-     * @generated from protobuf rpc: ToggleAttachProductsToTags
+     * @generated from protobuf rpc: AttachProductsToBrands
      */
-    toggleAttachProductsToTags(input: ToggleAttachProductsToTagsParams, options?: RpcOptions): UnaryCall<ToggleAttachProductsToTagsParams, Status>;
+    attachProductsToBrands(input: ToggleAttachProductsToBrandsParams, options?: RpcOptions): UnaryCall<ToggleAttachProductsToBrandsParams, CommonToggleAttachProductsResponse>;
+    /**
+     * @generated from protobuf rpc: DetachProductsToBrands
+     */
+    detachProductsToBrands(input: ToggleAttachProductsToBrandsParams, options?: RpcOptions): UnaryCall<ToggleAttachProductsToBrandsParams, CommonToggleAttachProductsResponse>;
+    /**
+     * @generated from protobuf rpc: AttachProductsToTags
+     */
+    attachProductsToTags(input: ToggleAttachProductsToTagsParams, options?: RpcOptions): UnaryCall<ToggleAttachProductsToTagsParams, CommonToggleAttachProductsResponse>;
+    /**
+     * End Products
+     *
+     * @generated from protobuf rpc: DetachProductsToTags
+     */
+    detachProductsToTags(input: ToggleAttachProductsToTagsParams, options?: RpcOptions): UnaryCall<ToggleAttachProductsToTagsParams, CommonToggleAttachProductsResponse>;
 }
 /**
  * @generated from protobuf service catalog.Catalog
@@ -574,11 +584,11 @@ export class CatalogClient implements ICatalogClient, ServiceInfo {
         return stackIntercept<UpdateProductMetaParams, Product>("unary", this._transport, method, opt, input);
     }
     /**
-     * @generated from protobuf rpc: UpdateProductStatus
+     * @generated from protobuf rpc: UpdateProductsStatus
      */
-    updateProductStatus(input: UpdateProductStatusParams, options?: RpcOptions): UnaryCall<UpdateProductStatusParams, Status> {
+    updateProductsStatus(input: UpdateProductsStatusParams, options?: RpcOptions): UnaryCall<UpdateProductsStatusParams, UpdateProductsStatusResponse> {
         const method = this.methods[38], opt = this._transport.mergeOptions(options);
-        return stackIntercept<UpdateProductStatusParams, Status>("unary", this._transport, method, opt, input);
+        return stackIntercept<UpdateProductsStatusParams, UpdateProductsStatusResponse>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: UpdateProductsStocks
@@ -602,30 +612,47 @@ export class CatalogClient implements ICatalogClient, ServiceInfo {
         return stackIntercept<CheckProductAvailableSlugParams, Status>("unary", this._transport, method, opt, input);
     }
     /**
-     * TODO: rework to many statuses
-     *
-     * @generated from protobuf rpc: ToggleAttachProductsToCategory
+     * @generated from protobuf rpc: AttachProductsToCategory
      */
-    toggleAttachProductsToCategory(input: ToggleAttachProductsToCategoryParams, options?: RpcOptions): UnaryCall<ToggleAttachProductsToCategoryParams, Status> {
+    attachProductsToCategory(input: ToggleAttachProductsToCategoryParams, options?: RpcOptions): UnaryCall<ToggleAttachProductsToCategoryParams, CommonToggleAttachProductsResponse> {
         const method = this.methods[42], opt = this._transport.mergeOptions(options);
-        return stackIntercept<ToggleAttachProductsToCategoryParams, Status>("unary", this._transport, method, opt, input);
+        return stackIntercept<ToggleAttachProductsToCategoryParams, CommonToggleAttachProductsResponse>("unary", this._transport, method, opt, input);
     }
     /**
-     * TODO: rework to many statuses
-     *
-     * @generated from protobuf rpc: ToggleAttachProductsToBrands
+     * @generated from protobuf rpc: DetachProductsToCategory
      */
-    toggleAttachProductsToBrands(input: ToggleAttachProductsToBrandsParams, options?: RpcOptions): UnaryCall<ToggleAttachProductsToBrandsParams, Status> {
+    detachProductsToCategory(input: ToggleAttachProductsToCategoryParams, options?: RpcOptions): UnaryCall<ToggleAttachProductsToCategoryParams, CommonToggleAttachProductsResponse> {
         const method = this.methods[43], opt = this._transport.mergeOptions(options);
-        return stackIntercept<ToggleAttachProductsToBrandsParams, Status>("unary", this._transport, method, opt, input);
+        return stackIntercept<ToggleAttachProductsToCategoryParams, CommonToggleAttachProductsResponse>("unary", this._transport, method, opt, input);
     }
     /**
-     * TODO: rework to many statuses
-     *
-     * @generated from protobuf rpc: ToggleAttachProductsToTags
+     * @generated from protobuf rpc: AttachProductsToBrands
      */
-    toggleAttachProductsToTags(input: ToggleAttachProductsToTagsParams, options?: RpcOptions): UnaryCall<ToggleAttachProductsToTagsParams, Status> {
+    attachProductsToBrands(input: ToggleAttachProductsToBrandsParams, options?: RpcOptions): UnaryCall<ToggleAttachProductsToBrandsParams, CommonToggleAttachProductsResponse> {
         const method = this.methods[44], opt = this._transport.mergeOptions(options);
-        return stackIntercept<ToggleAttachProductsToTagsParams, Status>("unary", this._transport, method, opt, input);
+        return stackIntercept<ToggleAttachProductsToBrandsParams, CommonToggleAttachProductsResponse>("unary", this._transport, method, opt, input);
+    }
+    /**
+     * @generated from protobuf rpc: DetachProductsToBrands
+     */
+    detachProductsToBrands(input: ToggleAttachProductsToBrandsParams, options?: RpcOptions): UnaryCall<ToggleAttachProductsToBrandsParams, CommonToggleAttachProductsResponse> {
+        const method = this.methods[45], opt = this._transport.mergeOptions(options);
+        return stackIntercept<ToggleAttachProductsToBrandsParams, CommonToggleAttachProductsResponse>("unary", this._transport, method, opt, input);
+    }
+    /**
+     * @generated from protobuf rpc: AttachProductsToTags
+     */
+    attachProductsToTags(input: ToggleAttachProductsToTagsParams, options?: RpcOptions): UnaryCall<ToggleAttachProductsToTagsParams, CommonToggleAttachProductsResponse> {
+        const method = this.methods[46], opt = this._transport.mergeOptions(options);
+        return stackIntercept<ToggleAttachProductsToTagsParams, CommonToggleAttachProductsResponse>("unary", this._transport, method, opt, input);
+    }
+    /**
+     * End Products
+     *
+     * @generated from protobuf rpc: DetachProductsToTags
+     */
+    detachProductsToTags(input: ToggleAttachProductsToTagsParams, options?: RpcOptions): UnaryCall<ToggleAttachProductsToTagsParams, CommonToggleAttachProductsResponse> {
+        const method = this.methods[47], opt = this._transport.mergeOptions(options);
+        return stackIntercept<ToggleAttachProductsToTagsParams, CommonToggleAttachProductsResponse>("unary", this._transport, method, opt, input);
     }
 }
