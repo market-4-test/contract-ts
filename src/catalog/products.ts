@@ -499,9 +499,9 @@ export interface CommonToggleAttachProductStatus {
  */
 export interface CommonToggleAttachProductsResponse {
     /**
-     * @generated from protobuf field: catalog.CommonToggleAttachProductStatus statuses = 1
+     * @generated from protobuf field: repeated catalog.CommonToggleAttachProductStatus statuses = 1
      */
-    statuses?: CommonToggleAttachProductStatus;
+    statuses: CommonToggleAttachProductStatus[];
 }
 /**
  * @generated from protobuf message catalog.ToggleAttachProductsToBrands
@@ -2607,11 +2607,12 @@ export const CommonToggleAttachProductStatus = new CommonToggleAttachProductStat
 class CommonToggleAttachProductsResponse$Type extends MessageType<CommonToggleAttachProductsResponse> {
     constructor() {
         super("catalog.CommonToggleAttachProductsResponse", [
-            { no: 1, name: "statuses", kind: "message", T: () => CommonToggleAttachProductStatus }
+            { no: 1, name: "statuses", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => CommonToggleAttachProductStatus }
         ]);
     }
     create(value?: PartialMessage<CommonToggleAttachProductsResponse>): CommonToggleAttachProductsResponse {
         const message = globalThis.Object.create((this.messagePrototype!));
+        message.statuses = [];
         if (value !== undefined)
             reflectionMergePartial<CommonToggleAttachProductsResponse>(this, message, value);
         return message;
@@ -2621,8 +2622,8 @@ class CommonToggleAttachProductsResponse$Type extends MessageType<CommonToggleAt
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* catalog.CommonToggleAttachProductStatus statuses */ 1:
-                    message.statuses = CommonToggleAttachProductStatus.internalBinaryRead(reader, reader.uint32(), options, message.statuses);
+                case /* repeated catalog.CommonToggleAttachProductStatus statuses */ 1:
+                    message.statuses.push(CommonToggleAttachProductStatus.internalBinaryRead(reader, reader.uint32(), options));
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -2636,9 +2637,9 @@ class CommonToggleAttachProductsResponse$Type extends MessageType<CommonToggleAt
         return message;
     }
     internalBinaryWrite(message: CommonToggleAttachProductsResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* catalog.CommonToggleAttachProductStatus statuses = 1; */
-        if (message.statuses)
-            CommonToggleAttachProductStatus.internalBinaryWrite(message.statuses, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* repeated catalog.CommonToggleAttachProductStatus statuses = 1; */
+        for (let i = 0; i < message.statuses.length; i++)
+            CommonToggleAttachProductStatus.internalBinaryWrite(message.statuses[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
