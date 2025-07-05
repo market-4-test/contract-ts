@@ -477,9 +477,9 @@ export interface ToggleAttachProductsToCategories {
  */
 export interface ToggleAttachProductsToCategoryParams {
     /**
-     * @generated from protobuf field: catalog.ToggleAttachProductsToCategories list = 1
+     * @generated from protobuf field: repeated catalog.ToggleAttachProductsToCategories list = 1
      */
-    list?: ToggleAttachProductsToCategories;
+    list: ToggleAttachProductsToCategories[];
 }
 /**
  * @generated from protobuf message catalog.CommonToggleAttachProductStatus
@@ -521,9 +521,9 @@ export interface ToggleAttachProductsToBrands {
  */
 export interface ToggleAttachProductsToBrandsParams {
     /**
-     * @generated from protobuf field: catalog.ToggleAttachProductsToBrands list = 1
+     * @generated from protobuf field: repeated catalog.ToggleAttachProductsToBrands list = 1
      */
-    list?: ToggleAttachProductsToBrands;
+    list: ToggleAttachProductsToBrands[];
 }
 /**
  * @generated from protobuf message catalog.ToggleAttachProductsToTags
@@ -543,9 +543,9 @@ export interface ToggleAttachProductsToTags {
  */
 export interface ToggleAttachProductsToTagsParams {
     /**
-     * @generated from protobuf field: catalog.ToggleAttachProductsToBrands list = 1
+     * @generated from protobuf field: repeated catalog.ToggleAttachProductsToBrands list = 1
      */
-    list?: ToggleAttachProductsToBrands;
+    list: ToggleAttachProductsToBrands[];
 }
 /**
  * @generated from protobuf enum catalog.ProductStatus
@@ -2505,11 +2505,12 @@ export const ToggleAttachProductsToCategories = new ToggleAttachProductsToCatego
 class ToggleAttachProductsToCategoryParams$Type extends MessageType<ToggleAttachProductsToCategoryParams> {
     constructor() {
         super("catalog.ToggleAttachProductsToCategoryParams", [
-            { no: 1, name: "list", kind: "message", T: () => ToggleAttachProductsToCategories }
+            { no: 1, name: "list", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => ToggleAttachProductsToCategories }
         ]);
     }
     create(value?: PartialMessage<ToggleAttachProductsToCategoryParams>): ToggleAttachProductsToCategoryParams {
         const message = globalThis.Object.create((this.messagePrototype!));
+        message.list = [];
         if (value !== undefined)
             reflectionMergePartial<ToggleAttachProductsToCategoryParams>(this, message, value);
         return message;
@@ -2519,8 +2520,8 @@ class ToggleAttachProductsToCategoryParams$Type extends MessageType<ToggleAttach
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* catalog.ToggleAttachProductsToCategories list */ 1:
-                    message.list = ToggleAttachProductsToCategories.internalBinaryRead(reader, reader.uint32(), options, message.list);
+                case /* repeated catalog.ToggleAttachProductsToCategories list */ 1:
+                    message.list.push(ToggleAttachProductsToCategories.internalBinaryRead(reader, reader.uint32(), options));
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -2534,9 +2535,9 @@ class ToggleAttachProductsToCategoryParams$Type extends MessageType<ToggleAttach
         return message;
     }
     internalBinaryWrite(message: ToggleAttachProductsToCategoryParams, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* catalog.ToggleAttachProductsToCategories list = 1; */
-        if (message.list)
-            ToggleAttachProductsToCategories.internalBinaryWrite(message.list, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* repeated catalog.ToggleAttachProductsToCategories list = 1; */
+        for (let i = 0; i < message.list.length; i++)
+            ToggleAttachProductsToCategories.internalBinaryWrite(message.list[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -2707,11 +2708,12 @@ export const ToggleAttachProductsToBrands = new ToggleAttachProductsToBrands$Typ
 class ToggleAttachProductsToBrandsParams$Type extends MessageType<ToggleAttachProductsToBrandsParams> {
     constructor() {
         super("catalog.ToggleAttachProductsToBrandsParams", [
-            { no: 1, name: "list", kind: "message", T: () => ToggleAttachProductsToBrands }
+            { no: 1, name: "list", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => ToggleAttachProductsToBrands }
         ]);
     }
     create(value?: PartialMessage<ToggleAttachProductsToBrandsParams>): ToggleAttachProductsToBrandsParams {
         const message = globalThis.Object.create((this.messagePrototype!));
+        message.list = [];
         if (value !== undefined)
             reflectionMergePartial<ToggleAttachProductsToBrandsParams>(this, message, value);
         return message;
@@ -2721,8 +2723,8 @@ class ToggleAttachProductsToBrandsParams$Type extends MessageType<ToggleAttachPr
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* catalog.ToggleAttachProductsToBrands list */ 1:
-                    message.list = ToggleAttachProductsToBrands.internalBinaryRead(reader, reader.uint32(), options, message.list);
+                case /* repeated catalog.ToggleAttachProductsToBrands list */ 1:
+                    message.list.push(ToggleAttachProductsToBrands.internalBinaryRead(reader, reader.uint32(), options));
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -2736,9 +2738,9 @@ class ToggleAttachProductsToBrandsParams$Type extends MessageType<ToggleAttachPr
         return message;
     }
     internalBinaryWrite(message: ToggleAttachProductsToBrandsParams, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* catalog.ToggleAttachProductsToBrands list = 1; */
-        if (message.list)
-            ToggleAttachProductsToBrands.internalBinaryWrite(message.list, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* repeated catalog.ToggleAttachProductsToBrands list = 1; */
+        for (let i = 0; i < message.list.length; i++)
+            ToggleAttachProductsToBrands.internalBinaryWrite(message.list[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -2808,11 +2810,12 @@ export const ToggleAttachProductsToTags = new ToggleAttachProductsToTags$Type();
 class ToggleAttachProductsToTagsParams$Type extends MessageType<ToggleAttachProductsToTagsParams> {
     constructor() {
         super("catalog.ToggleAttachProductsToTagsParams", [
-            { no: 1, name: "list", kind: "message", T: () => ToggleAttachProductsToBrands }
+            { no: 1, name: "list", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => ToggleAttachProductsToBrands }
         ]);
     }
     create(value?: PartialMessage<ToggleAttachProductsToTagsParams>): ToggleAttachProductsToTagsParams {
         const message = globalThis.Object.create((this.messagePrototype!));
+        message.list = [];
         if (value !== undefined)
             reflectionMergePartial<ToggleAttachProductsToTagsParams>(this, message, value);
         return message;
@@ -2822,8 +2825,8 @@ class ToggleAttachProductsToTagsParams$Type extends MessageType<ToggleAttachProd
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* catalog.ToggleAttachProductsToBrands list */ 1:
-                    message.list = ToggleAttachProductsToBrands.internalBinaryRead(reader, reader.uint32(), options, message.list);
+                case /* repeated catalog.ToggleAttachProductsToBrands list */ 1:
+                    message.list.push(ToggleAttachProductsToBrands.internalBinaryRead(reader, reader.uint32(), options));
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -2837,9 +2840,9 @@ class ToggleAttachProductsToTagsParams$Type extends MessageType<ToggleAttachProd
         return message;
     }
     internalBinaryWrite(message: ToggleAttachProductsToTagsParams, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* catalog.ToggleAttachProductsToBrands list = 1; */
-        if (message.list)
-            ToggleAttachProductsToBrands.internalBinaryWrite(message.list, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* repeated catalog.ToggleAttachProductsToBrands list = 1; */
+        for (let i = 0; i < message.list.length; i++)
+            ToggleAttachProductsToBrands.internalBinaryWrite(message.list[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
