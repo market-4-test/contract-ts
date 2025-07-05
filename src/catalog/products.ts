@@ -424,9 +424,9 @@ export interface UpdateProductsPrice {
  */
 export interface UpdateProductsPricesParams {
     /**
-     * @generated from protobuf field: repeated catalog.UpdateProductsPrice stocks = 1
+     * @generated from protobuf field: repeated catalog.UpdateProductsPrice prices = 1
      */
-    stocks: UpdateProductsPrice[];
+    prices: UpdateProductsPrice[];
 }
 /**
  * @generated from protobuf message catalog.UpdateProductsPriceStatus
@@ -2254,12 +2254,12 @@ export const UpdateProductsPrice = new UpdateProductsPrice$Type();
 class UpdateProductsPricesParams$Type extends MessageType<UpdateProductsPricesParams> {
     constructor() {
         super("catalog.UpdateProductsPricesParams", [
-            { no: 1, name: "stocks", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => UpdateProductsPrice }
+            { no: 1, name: "prices", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => UpdateProductsPrice }
         ]);
     }
     create(value?: PartialMessage<UpdateProductsPricesParams>): UpdateProductsPricesParams {
         const message = globalThis.Object.create((this.messagePrototype!));
-        message.stocks = [];
+        message.prices = [];
         if (value !== undefined)
             reflectionMergePartial<UpdateProductsPricesParams>(this, message, value);
         return message;
@@ -2269,8 +2269,8 @@ class UpdateProductsPricesParams$Type extends MessageType<UpdateProductsPricesPa
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* repeated catalog.UpdateProductsPrice stocks */ 1:
-                    message.stocks.push(UpdateProductsPrice.internalBinaryRead(reader, reader.uint32(), options));
+                case /* repeated catalog.UpdateProductsPrice prices */ 1:
+                    message.prices.push(UpdateProductsPrice.internalBinaryRead(reader, reader.uint32(), options));
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -2284,9 +2284,9 @@ class UpdateProductsPricesParams$Type extends MessageType<UpdateProductsPricesPa
         return message;
     }
     internalBinaryWrite(message: UpdateProductsPricesParams, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* repeated catalog.UpdateProductsPrice stocks = 1; */
-        for (let i = 0; i < message.stocks.length; i++)
-            UpdateProductsPrice.internalBinaryWrite(message.stocks[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* repeated catalog.UpdateProductsPrice prices = 1; */
+        for (let i = 0; i < message.prices.length; i++)
+            UpdateProductsPrice.internalBinaryWrite(message.prices[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
