@@ -38,8 +38,8 @@ import { GetCategoriesShortOffsetResponse } from "./categories";
 import { GetCategoriesShortOffsetParams } from "./categories";
 import { GetCategoriesOffsetResponse } from "./categories";
 import { GetCategoriesOffsetParams } from "./categories";
-import { GetPaginateCategoriesShortResponse } from "./categories";
-import { GetPaginateCategoriesResponse } from "./categories";
+import { GetCategoriesPaginateShortResponse } from "./categories";
+import { GetCategoriesPaginateResponse } from "./categories";
 import { GetCategoriesPaginateParams } from "./categories";
 import { DeleteBrandsResponse } from "./brands";
 import { DeleteBrandsParams } from "./brands";
@@ -94,8 +94,8 @@ export const Catalog = new ServiceType("catalog.Catalog", [
     { name: "CreateBrand", options: {}, I: CreateBrandParams, O: Brand },
     { name: "UpdateBrand", options: {}, I: UpdateBrandParams, O: Brand },
     { name: "DeleteBrands", options: {}, I: DeleteBrandsParams, O: DeleteBrandsResponse },
-    { name: "GetCategoriesPaginate", options: {}, I: GetCategoriesPaginateParams, O: GetPaginateCategoriesResponse },
-    { name: "GetCategoriesShortPaginate", options: {}, I: GetCategoriesPaginateParams, O: GetPaginateCategoriesShortResponse },
+    { name: "GetCategoriesPaginate", options: {}, I: GetCategoriesPaginateParams, O: GetCategoriesPaginateResponse },
+    { name: "GetCategoriesShortPaginate", options: {}, I: GetCategoriesPaginateParams, O: GetCategoriesPaginateShortResponse },
     { name: "GetCategoriesOffset", options: {}, I: GetCategoriesOffsetParams, O: GetCategoriesOffsetResponse },
     { name: "GetCategoriesShortOffset", options: {}, I: GetCategoriesShortOffsetParams, O: GetCategoriesShortOffsetResponse },
     { name: "GetCategoryById", options: {}, I: GetCategoryByIdParams, O: Category },
