@@ -124,8 +124,8 @@ export const Catalog = new ServiceType("catalog.Catalog", [
     { name: "CheckProductAvailableSlug", options: {}, I: CheckProductAvailableSlugParams, O: Status },
     { name: "AttachProductsToCategory", options: {}, I: ToggleAttachProductsToCategoryParams, O: CommonToggleAttachProductsResponse },
     { name: "DetachProductsToCategory", options: {}, I: ToggleAttachProductsToCategoryParams, O: CommonToggleAttachProductsResponse },
-    { name: "AttachProductsToBrands", options: {}, I: ToggleAttachProductsToBrandsParams, O: CommonToggleAttachProductsResponse },
-    { name: "DetachProductsToBrands", options: {}, I: ToggleAttachProductsToBrandsParams, O: CommonToggleAttachProductsResponse },
-    { name: "AttachProductsToTags", options: {}, I: ToggleAttachProductsToTagsParams, O: CommonToggleAttachProductsResponse },
-    { name: "DetachProductsToTags", options: {}, I: ToggleAttachProductsToTagsParams, O: CommonToggleAttachProductsResponse }
+    { name: "AttachProductsToBrand", options: {}, I: ToggleAttachProductsToBrandsParams, O: CommonToggleAttachProductsResponse },
+    { name: "DetachProductsToBrand", options: {}, I: ToggleAttachProductsToBrandsParams, O: CommonToggleAttachProductsResponse },
+    { name: "AttachProductsToTag", options: {}, I: ToggleAttachProductsToTagsParams, O: CommonToggleAttachProductsResponse },
+    { name: "DetachProductsToTag", options: {}, I: ToggleAttachProductsToTagsParams, O: CommonToggleAttachProductsResponse }
 ]);

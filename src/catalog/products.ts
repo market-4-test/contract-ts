@@ -468,9 +468,9 @@ export interface ToggleAttachProductsToCategories {
      */
     productUuids: Uint8Array[];
     /**
-     * @generated from protobuf field: repeated int32 category_ids = 2
+     * @generated from protobuf field: int32 category_ids = 2
      */
-    categoryIds: number[];
+    categoryIds: number;
 }
 /**
  * @generated from protobuf message catalog.ToggleAttachProductsToCategoryParams
@@ -512,9 +512,9 @@ export interface ToggleAttachProductsToBrands {
      */
     productUuids: Uint8Array[];
     /**
-     * @generated from protobuf field: repeated int32 brand_ids = 2
+     * @generated from protobuf field: int32 brand_ids = 2
      */
-    brandIds: number[];
+    brandIds: number;
 }
 /**
  * @generated from protobuf message catalog.ToggleAttachProductsToBrandsParams
@@ -534,9 +534,9 @@ export interface ToggleAttachProductsToTags {
      */
     productUuids: Uint8Array[];
     /**
-     * @generated from protobuf field: repeated int32 tag_ids = 2
+     * @generated from protobuf field: int32 tag_ids = 2
      */
-    tagIds: number[];
+    tagIds: number;
 }
 /**
  * @generated from protobuf message catalog.ToggleAttachProductsToTagsParams
@@ -2451,13 +2451,13 @@ class ToggleAttachProductsToCategories$Type extends MessageType<ToggleAttachProd
     constructor() {
         super("catalog.ToggleAttachProductsToCategories", [
             { no: 1, name: "product_uuids", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 12 /*ScalarType.BYTES*/ },
-            { no: 2, name: "category_ids", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 5 /*ScalarType.INT32*/ }
+            { no: 2, name: "category_ids", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
         ]);
     }
     create(value?: PartialMessage<ToggleAttachProductsToCategories>): ToggleAttachProductsToCategories {
         const message = globalThis.Object.create((this.messagePrototype!));
         message.productUuids = [];
-        message.categoryIds = [];
+        message.categoryIds = 0;
         if (value !== undefined)
             reflectionMergePartial<ToggleAttachProductsToCategories>(this, message, value);
         return message;
@@ -2470,12 +2470,8 @@ class ToggleAttachProductsToCategories$Type extends MessageType<ToggleAttachProd
                 case /* repeated bytes product_uuids */ 1:
                     message.productUuids.push(reader.bytes());
                     break;
-                case /* repeated int32 category_ids */ 2:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.categoryIds.push(reader.int32());
-                    else
-                        message.categoryIds.push(reader.int32());
+                case /* int32 category_ids */ 2:
+                    message.categoryIds = reader.int32();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -2492,13 +2488,9 @@ class ToggleAttachProductsToCategories$Type extends MessageType<ToggleAttachProd
         /* repeated bytes product_uuids = 1; */
         for (let i = 0; i < message.productUuids.length; i++)
             writer.tag(1, WireType.LengthDelimited).bytes(message.productUuids[i]);
-        /* repeated int32 category_ids = 2; */
-        if (message.categoryIds.length) {
-            writer.tag(2, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.categoryIds.length; i++)
-                writer.int32(message.categoryIds[i]);
-            writer.join();
-        }
+        /* int32 category_ids = 2; */
+        if (message.categoryIds !== 0)
+            writer.tag(2, WireType.Varint).int32(message.categoryIds);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -2661,13 +2653,13 @@ class ToggleAttachProductsToBrands$Type extends MessageType<ToggleAttachProducts
     constructor() {
         super("catalog.ToggleAttachProductsToBrands", [
             { no: 1, name: "product_uuids", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 12 /*ScalarType.BYTES*/ },
-            { no: 2, name: "brand_ids", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 5 /*ScalarType.INT32*/ }
+            { no: 2, name: "brand_ids", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
         ]);
     }
     create(value?: PartialMessage<ToggleAttachProductsToBrands>): ToggleAttachProductsToBrands {
         const message = globalThis.Object.create((this.messagePrototype!));
         message.productUuids = [];
-        message.brandIds = [];
+        message.brandIds = 0;
         if (value !== undefined)
             reflectionMergePartial<ToggleAttachProductsToBrands>(this, message, value);
         return message;
@@ -2680,12 +2672,8 @@ class ToggleAttachProductsToBrands$Type extends MessageType<ToggleAttachProducts
                 case /* repeated bytes product_uuids */ 1:
                     message.productUuids.push(reader.bytes());
                     break;
-                case /* repeated int32 brand_ids */ 2:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.brandIds.push(reader.int32());
-                    else
-                        message.brandIds.push(reader.int32());
+                case /* int32 brand_ids */ 2:
+                    message.brandIds = reader.int32();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -2702,13 +2690,9 @@ class ToggleAttachProductsToBrands$Type extends MessageType<ToggleAttachProducts
         /* repeated bytes product_uuids = 1; */
         for (let i = 0; i < message.productUuids.length; i++)
             writer.tag(1, WireType.LengthDelimited).bytes(message.productUuids[i]);
-        /* repeated int32 brand_ids = 2; */
-        if (message.brandIds.length) {
-            writer.tag(2, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.brandIds.length; i++)
-                writer.int32(message.brandIds[i]);
-            writer.join();
-        }
+        /* int32 brand_ids = 2; */
+        if (message.brandIds !== 0)
+            writer.tag(2, WireType.Varint).int32(message.brandIds);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -2770,13 +2754,13 @@ class ToggleAttachProductsToTags$Type extends MessageType<ToggleAttachProductsTo
     constructor() {
         super("catalog.ToggleAttachProductsToTags", [
             { no: 1, name: "product_uuids", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 12 /*ScalarType.BYTES*/ },
-            { no: 2, name: "tag_ids", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 5 /*ScalarType.INT32*/ }
+            { no: 2, name: "tag_ids", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
         ]);
     }
     create(value?: PartialMessage<ToggleAttachProductsToTags>): ToggleAttachProductsToTags {
         const message = globalThis.Object.create((this.messagePrototype!));
         message.productUuids = [];
-        message.tagIds = [];
+        message.tagIds = 0;
         if (value !== undefined)
             reflectionMergePartial<ToggleAttachProductsToTags>(this, message, value);
         return message;
@@ -2789,12 +2773,8 @@ class ToggleAttachProductsToTags$Type extends MessageType<ToggleAttachProductsTo
                 case /* repeated bytes product_uuids */ 1:
                     message.productUuids.push(reader.bytes());
                     break;
-                case /* repeated int32 tag_ids */ 2:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.tagIds.push(reader.int32());
-                    else
-                        message.tagIds.push(reader.int32());
+                case /* int32 tag_ids */ 2:
+                    message.tagIds = reader.int32();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -2811,13 +2791,9 @@ class ToggleAttachProductsToTags$Type extends MessageType<ToggleAttachProductsTo
         /* repeated bytes product_uuids = 1; */
         for (let i = 0; i < message.productUuids.length; i++)
             writer.tag(1, WireType.LengthDelimited).bytes(message.productUuids[i]);
-        /* repeated int32 tag_ids = 2; */
-        if (message.tagIds.length) {
-            writer.tag(2, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.tagIds.length; i++)
-                writer.int32(message.tagIds[i]);
-            writer.join();
-        }
+        /* int32 tag_ids = 2; */
+        if (message.tagIds !== 0)
+            writer.tag(2, WireType.Varint).int32(message.tagIds);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
