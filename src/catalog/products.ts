@@ -380,9 +380,53 @@ export interface UpdateProductsStockStatus {
  */
 export interface UpdateProductsStocksResponse {
     /**
-     * @generated from protobuf field: repeated catalog.UpdateProductsStockStatus stocks = 1
+     * @generated from protobuf field: repeated catalog.UpdateProductsStockStatus statuses = 1
      */
-    stocks: UpdateProductsStockStatus[];
+    statuses: UpdateProductsStockStatus[];
+}
+/**
+ * @generated from protobuf message catalog.UpdateProductsPrice
+ */
+export interface UpdateProductsPrice {
+    /**
+     * @generated from protobuf field: bytes product_uuid = 1
+     */
+    productUuid: Uint8Array;
+    /**
+     * @generated from protobuf field: int32 price = 2
+     */
+    price: number;
+}
+/**
+ * @generated from protobuf message catalog.UpdateProductsPricesParams
+ */
+export interface UpdateProductsPricesParams {
+    /**
+     * @generated from protobuf field: repeated catalog.UpdateProductsStock stocks = 1
+     */
+    stocks: UpdateProductsStock[];
+}
+/**
+ * @generated from protobuf message catalog.UpdateProductsPriceStatus
+ */
+export interface UpdateProductsPriceStatus {
+    /**
+     * @generated from protobuf field: bytes product_uuid = 2
+     */
+    productUuid: Uint8Array;
+    /**
+     * @generated from protobuf field: bool status = 3
+     */
+    status: boolean;
+}
+/**
+ * @generated from protobuf message catalog.UpdateProductsPricesResponse
+ */
+export interface UpdateProductsPricesResponse {
+    /**
+     * @generated from protobuf field: repeated catalog.UpdateProductsPriceStatus statuses = 1
+     */
+    statuses: UpdateProductsPriceStatus[];
 }
 /**
  * @generated from protobuf message catalog.CheckProductAvailableSlugParams
@@ -1962,12 +2006,12 @@ export const UpdateProductsStockStatus = new UpdateProductsStockStatus$Type();
 class UpdateProductsStocksResponse$Type extends MessageType<UpdateProductsStocksResponse> {
     constructor() {
         super("catalog.UpdateProductsStocksResponse", [
-            { no: 1, name: "stocks", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => UpdateProductsStockStatus }
+            { no: 1, name: "statuses", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => UpdateProductsStockStatus }
         ]);
     }
     create(value?: PartialMessage<UpdateProductsStocksResponse>): UpdateProductsStocksResponse {
         const message = globalThis.Object.create((this.messagePrototype!));
-        message.stocks = [];
+        message.statuses = [];
         if (value !== undefined)
             reflectionMergePartial<UpdateProductsStocksResponse>(this, message, value);
         return message;
@@ -1977,8 +2021,8 @@ class UpdateProductsStocksResponse$Type extends MessageType<UpdateProductsStocks
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* repeated catalog.UpdateProductsStockStatus stocks */ 1:
-                    message.stocks.push(UpdateProductsStockStatus.internalBinaryRead(reader, reader.uint32(), options));
+                case /* repeated catalog.UpdateProductsStockStatus statuses */ 1:
+                    message.statuses.push(UpdateProductsStockStatus.internalBinaryRead(reader, reader.uint32(), options));
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -1992,9 +2036,9 @@ class UpdateProductsStocksResponse$Type extends MessageType<UpdateProductsStocks
         return message;
     }
     internalBinaryWrite(message: UpdateProductsStocksResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* repeated catalog.UpdateProductsStockStatus stocks = 1; */
-        for (let i = 0; i < message.stocks.length; i++)
-            UpdateProductsStockStatus.internalBinaryWrite(message.stocks[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* repeated catalog.UpdateProductsStockStatus statuses = 1; */
+        for (let i = 0; i < message.statuses.length; i++)
+            UpdateProductsStockStatus.internalBinaryWrite(message.statuses[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -2005,6 +2049,210 @@ class UpdateProductsStocksResponse$Type extends MessageType<UpdateProductsStocks
  * @generated MessageType for protobuf message catalog.UpdateProductsStocksResponse
  */
 export const UpdateProductsStocksResponse = new UpdateProductsStocksResponse$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class UpdateProductsPrice$Type extends MessageType<UpdateProductsPrice> {
+    constructor() {
+        super("catalog.UpdateProductsPrice", [
+            { no: 1, name: "product_uuid", kind: "scalar", T: 12 /*ScalarType.BYTES*/ },
+            { no: 2, name: "price", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+        ]);
+    }
+    create(value?: PartialMessage<UpdateProductsPrice>): UpdateProductsPrice {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.productUuid = new Uint8Array(0);
+        message.price = 0;
+        if (value !== undefined)
+            reflectionMergePartial<UpdateProductsPrice>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: UpdateProductsPrice): UpdateProductsPrice {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* bytes product_uuid */ 1:
+                    message.productUuid = reader.bytes();
+                    break;
+                case /* int32 price */ 2:
+                    message.price = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: UpdateProductsPrice, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* bytes product_uuid = 1; */
+        if (message.productUuid.length)
+            writer.tag(1, WireType.LengthDelimited).bytes(message.productUuid);
+        /* int32 price = 2; */
+        if (message.price !== 0)
+            writer.tag(2, WireType.Varint).int32(message.price);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message catalog.UpdateProductsPrice
+ */
+export const UpdateProductsPrice = new UpdateProductsPrice$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class UpdateProductsPricesParams$Type extends MessageType<UpdateProductsPricesParams> {
+    constructor() {
+        super("catalog.UpdateProductsPricesParams", [
+            { no: 1, name: "stocks", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => UpdateProductsStock }
+        ]);
+    }
+    create(value?: PartialMessage<UpdateProductsPricesParams>): UpdateProductsPricesParams {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.stocks = [];
+        if (value !== undefined)
+            reflectionMergePartial<UpdateProductsPricesParams>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: UpdateProductsPricesParams): UpdateProductsPricesParams {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* repeated catalog.UpdateProductsStock stocks */ 1:
+                    message.stocks.push(UpdateProductsStock.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: UpdateProductsPricesParams, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* repeated catalog.UpdateProductsStock stocks = 1; */
+        for (let i = 0; i < message.stocks.length; i++)
+            UpdateProductsStock.internalBinaryWrite(message.stocks[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message catalog.UpdateProductsPricesParams
+ */
+export const UpdateProductsPricesParams = new UpdateProductsPricesParams$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class UpdateProductsPriceStatus$Type extends MessageType<UpdateProductsPriceStatus> {
+    constructor() {
+        super("catalog.UpdateProductsPriceStatus", [
+            { no: 2, name: "product_uuid", kind: "scalar", T: 12 /*ScalarType.BYTES*/ },
+            { no: 3, name: "status", kind: "scalar", T: 8 /*ScalarType.BOOL*/ }
+        ]);
+    }
+    create(value?: PartialMessage<UpdateProductsPriceStatus>): UpdateProductsPriceStatus {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.productUuid = new Uint8Array(0);
+        message.status = false;
+        if (value !== undefined)
+            reflectionMergePartial<UpdateProductsPriceStatus>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: UpdateProductsPriceStatus): UpdateProductsPriceStatus {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* bytes product_uuid */ 2:
+                    message.productUuid = reader.bytes();
+                    break;
+                case /* bool status */ 3:
+                    message.status = reader.bool();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: UpdateProductsPriceStatus, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* bytes product_uuid = 2; */
+        if (message.productUuid.length)
+            writer.tag(2, WireType.LengthDelimited).bytes(message.productUuid);
+        /* bool status = 3; */
+        if (message.status !== false)
+            writer.tag(3, WireType.Varint).bool(message.status);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message catalog.UpdateProductsPriceStatus
+ */
+export const UpdateProductsPriceStatus = new UpdateProductsPriceStatus$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class UpdateProductsPricesResponse$Type extends MessageType<UpdateProductsPricesResponse> {
+    constructor() {
+        super("catalog.UpdateProductsPricesResponse", [
+            { no: 1, name: "statuses", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => UpdateProductsPriceStatus }
+        ]);
+    }
+    create(value?: PartialMessage<UpdateProductsPricesResponse>): UpdateProductsPricesResponse {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.statuses = [];
+        if (value !== undefined)
+            reflectionMergePartial<UpdateProductsPricesResponse>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: UpdateProductsPricesResponse): UpdateProductsPricesResponse {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* repeated catalog.UpdateProductsPriceStatus statuses */ 1:
+                    message.statuses.push(UpdateProductsPriceStatus.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: UpdateProductsPricesResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* repeated catalog.UpdateProductsPriceStatus statuses = 1; */
+        for (let i = 0; i < message.statuses.length; i++)
+            UpdateProductsPriceStatus.internalBinaryWrite(message.statuses[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message catalog.UpdateProductsPricesResponse
+ */
+export const UpdateProductsPricesResponse = new UpdateProductsPricesResponse$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class CheckProductAvailableSlugParams$Type extends MessageType<CheckProductAvailableSlugParams> {
     constructor() {

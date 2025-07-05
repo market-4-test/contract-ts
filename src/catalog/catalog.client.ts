@@ -8,6 +8,8 @@ import type { ToggleAttachProductsToTagsParams } from "./products";
 import type { ToggleAttachProductsToBrandsParams } from "./products";
 import type { ToggleAttachProductsToCategoryParams } from "./products";
 import type { CheckProductAvailableSlugParams } from "./products";
+import type { UpdateProductsPricesResponse } from "./products";
+import type { UpdateProductsPricesParams } from "./products";
 import type { UpdateProductsStocksResponse } from "./products";
 import type { UpdateProductsStocksParams } from "./products";
 import type { UpdateProductStatusParams } from "./products";
@@ -210,9 +212,9 @@ export interface ICatalogClient {
     /**
      * End Categories
      *
-     * @generated from protobuf rpc: CheckAvailableSlug
+     * @generated from protobuf rpc: CheckCategoryAvailableSlug
      */
-    checkAvailableSlug(input: CheckAvailableSlugParams, options?: RpcOptions): UnaryCall<CheckAvailableSlugParams, Status>;
+    checkCategoryAvailableSlug(input: CheckAvailableSlugParams, options?: RpcOptions): UnaryCall<CheckAvailableSlugParams, Status>;
     /**
      * Products
      *
@@ -255,6 +257,10 @@ export interface ICatalogClient {
      * @generated from protobuf rpc: UpdateProductsStocks
      */
     updateProductsStocks(input: UpdateProductsStocksParams, options?: RpcOptions): UnaryCall<UpdateProductsStocksParams, UpdateProductsStocksResponse>;
+    /**
+     * @generated from protobuf rpc: UpdateProductsPrices
+     */
+    updateProductsPrices(input: UpdateProductsPricesParams, options?: RpcOptions): UnaryCall<UpdateProductsPricesParams, UpdateProductsPricesResponse>;
     /**
      * @generated from protobuf rpc: CheckProductAvailableSlug
      */
@@ -503,9 +509,9 @@ export class CatalogClient implements ICatalogClient, ServiceInfo {
     /**
      * End Categories
      *
-     * @generated from protobuf rpc: CheckAvailableSlug
+     * @generated from protobuf rpc: CheckCategoryAvailableSlug
      */
-    checkAvailableSlug(input: CheckAvailableSlugParams, options?: RpcOptions): UnaryCall<CheckAvailableSlugParams, Status> {
+    checkCategoryAvailableSlug(input: CheckAvailableSlugParams, options?: RpcOptions): UnaryCall<CheckAvailableSlugParams, Status> {
         const method = this.methods[29], opt = this._transport.mergeOptions(options);
         return stackIntercept<CheckAvailableSlugParams, Status>("unary", this._transport, method, opt, input);
     }
@@ -582,10 +588,17 @@ export class CatalogClient implements ICatalogClient, ServiceInfo {
         return stackIntercept<UpdateProductsStocksParams, UpdateProductsStocksResponse>("unary", this._transport, method, opt, input);
     }
     /**
+     * @generated from protobuf rpc: UpdateProductsPrices
+     */
+    updateProductsPrices(input: UpdateProductsPricesParams, options?: RpcOptions): UnaryCall<UpdateProductsPricesParams, UpdateProductsPricesResponse> {
+        const method = this.methods[40], opt = this._transport.mergeOptions(options);
+        return stackIntercept<UpdateProductsPricesParams, UpdateProductsPricesResponse>("unary", this._transport, method, opt, input);
+    }
+    /**
      * @generated from protobuf rpc: CheckProductAvailableSlug
      */
     checkProductAvailableSlug(input: CheckProductAvailableSlugParams, options?: RpcOptions): UnaryCall<CheckProductAvailableSlugParams, Status> {
-        const method = this.methods[40], opt = this._transport.mergeOptions(options);
+        const method = this.methods[41], opt = this._transport.mergeOptions(options);
         return stackIntercept<CheckProductAvailableSlugParams, Status>("unary", this._transport, method, opt, input);
     }
     /**
@@ -594,7 +607,7 @@ export class CatalogClient implements ICatalogClient, ServiceInfo {
      * @generated from protobuf rpc: ToggleAttachProductsToCategory
      */
     toggleAttachProductsToCategory(input: ToggleAttachProductsToCategoryParams, options?: RpcOptions): UnaryCall<ToggleAttachProductsToCategoryParams, Status> {
-        const method = this.methods[41], opt = this._transport.mergeOptions(options);
+        const method = this.methods[42], opt = this._transport.mergeOptions(options);
         return stackIntercept<ToggleAttachProductsToCategoryParams, Status>("unary", this._transport, method, opt, input);
     }
     /**
@@ -603,7 +616,7 @@ export class CatalogClient implements ICatalogClient, ServiceInfo {
      * @generated from protobuf rpc: ToggleAttachProductsToBrands
      */
     toggleAttachProductsToBrands(input: ToggleAttachProductsToBrandsParams, options?: RpcOptions): UnaryCall<ToggleAttachProductsToBrandsParams, Status> {
-        const method = this.methods[42], opt = this._transport.mergeOptions(options);
+        const method = this.methods[43], opt = this._transport.mergeOptions(options);
         return stackIntercept<ToggleAttachProductsToBrandsParams, Status>("unary", this._transport, method, opt, input);
     }
     /**
@@ -612,7 +625,7 @@ export class CatalogClient implements ICatalogClient, ServiceInfo {
      * @generated from protobuf rpc: ToggleAttachProductsToTags
      */
     toggleAttachProductsToTags(input: ToggleAttachProductsToTagsParams, options?: RpcOptions): UnaryCall<ToggleAttachProductsToTagsParams, Status> {
-        const method = this.methods[43], opt = this._transport.mergeOptions(options);
+        const method = this.methods[44], opt = this._transport.mergeOptions(options);
         return stackIntercept<ToggleAttachProductsToTagsParams, Status>("unary", this._transport, method, opt, input);
     }
 }

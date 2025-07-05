@@ -5,6 +5,8 @@ import { ToggleAttachProductsToTagsParams } from "./products";
 import { ToggleAttachProductsToBrandsParams } from "./products";
 import { ToggleAttachProductsToCategoryParams } from "./products";
 import { CheckProductAvailableSlugParams } from "./products";
+import { UpdateProductsPricesResponse } from "./products";
+import { UpdateProductsPricesParams } from "./products";
 import { UpdateProductsStocksResponse } from "./products";
 import { UpdateProductsStocksParams } from "./products";
 import { UpdateProductStatusParams } from "./products";
@@ -105,7 +107,7 @@ export const Catalog = new ServiceType("catalog.Catalog", [
     { name: "DeleteCategories", options: {}, I: DeleteCategoriesParams, O: DeleteCategoriesResponse },
     { name: "SetImageToCategory", options: {}, I: SetImageToCategoryParams, O: Status },
     { name: "UpdateOrderSortToCategories", options: {}, I: UpdateOrderSortToCategoriesParams, O: UpdateOrderSortToCategoriesResponse },
-    { name: "CheckAvailableSlug", options: {}, I: CheckAvailableSlugParams, O: Status },
+    { name: "CheckCategoryAvailableSlug", options: {}, I: CheckAvailableSlugParams, O: Status },
     { name: "GetProductsPaginate", options: {}, I: GetProductsPaginateParams, O: GetProductsPaginateResponse },
     { name: "GetProductsShortPaginate", options: {}, I: GetProductsShortPaginateParams, O: GetProductsShortPaginateResponse },
     { name: "GetProductsOffset", options: {}, I: GetProductsOffsetParams, O: GetProductsOffsetResponse },
@@ -116,6 +118,7 @@ export const Catalog = new ServiceType("catalog.Catalog", [
     { name: "UpdateProduct", options: {}, I: UpdateProductMetaParams, O: Product },
     { name: "UpdateProductStatus", options: {}, I: UpdateProductStatusParams, O: Status },
     { name: "UpdateProductsStocks", options: {}, I: UpdateProductsStocksParams, O: UpdateProductsStocksResponse },
+    { name: "UpdateProductsPrices", options: {}, I: UpdateProductsPricesParams, O: UpdateProductsPricesResponse },
     { name: "CheckProductAvailableSlug", options: {}, I: CheckProductAvailableSlugParams, O: Status },
     { name: "ToggleAttachProductsToCategory", options: {}, I: ToggleAttachProductsToCategoryParams, O: Status },
     { name: "ToggleAttachProductsToBrands", options: {}, I: ToggleAttachProductsToBrandsParams, O: Status },
