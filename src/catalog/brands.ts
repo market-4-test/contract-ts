@@ -35,10 +35,8 @@ export interface Brand {
      */
     isActive: boolean;
     /**
-     * @generated from protobuf field: optional bytes image_uuid = 5
-     */
-    imageUuid?: Uint8Array;
-    /**
+     *  optional bytes image_uuid = 5;
+     *
      * @generated from protobuf field: google.protobuf.Timestamp created_at = 6
      */
     createdAt?: Timestamp;
@@ -79,11 +77,7 @@ export interface UpsertBrandParams {
     /**
      * @generated from protobuf field: bool is_active = 4
      */
-    isActive: boolean;
-    /**
-     * @generated from protobuf field: optional bytes image_uuid = 5
-     */
-    imageUuid?: Uint8Array;
+    isActive: boolean; //  optional bytes image_uuid = 5;
 }
 /**
  * @generated from protobuf message catalog.CreateBrandParams
@@ -120,19 +114,11 @@ export interface UpdateActiveToBrands {
      */
     isActive: boolean;
 }
-/**
- * @generated from protobuf message catalog.UpdateImageToBrand
- */
-export interface UpdateImageToBrand {
-    /**
-     * @generated from protobuf field: int32 id = 1
-     */
-    id: number;
-    /**
-     * @generated from protobuf field: bytes image_uuid = 5
-     */
-    imageUuid: Uint8Array;
-}
+// message UpdateImageToBrand {
+//  int32 id = 1;
+//  bytes image_uuid = 5;
+// }
+
 /**
  * @generated from protobuf message catalog.GetBrandsPaginateParams
  */
@@ -252,7 +238,6 @@ class Brand$Type extends MessageType<Brand> {
             { no: 2, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 3, name: "slug", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 4, name: "is_active", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
-            { no: 5, name: "image_uuid", kind: "scalar", opt: true, T: 12 /*ScalarType.BYTES*/ },
             { no: 6, name: "created_at", kind: "message", T: () => Timestamp },
             { no: 7, name: "updated_at", kind: "message", T: () => Timestamp }
         ]);
@@ -284,9 +269,6 @@ class Brand$Type extends MessageType<Brand> {
                 case /* bool is_active */ 4:
                     message.isActive = reader.bool();
                     break;
-                case /* optional bytes image_uuid */ 5:
-                    message.imageUuid = reader.bytes();
-                    break;
                 case /* google.protobuf.Timestamp created_at */ 6:
                     message.createdAt = Timestamp.internalBinaryRead(reader, reader.uint32(), options, message.createdAt);
                     break;
@@ -317,9 +299,6 @@ class Brand$Type extends MessageType<Brand> {
         /* bool is_active = 4; */
         if (message.isActive !== false)
             writer.tag(4, WireType.Varint).bool(message.isActive);
-        /* optional bytes image_uuid = 5; */
-        if (message.imageUuid !== undefined)
-            writer.tag(5, WireType.LengthDelimited).bytes(message.imageUuid);
         /* google.protobuf.Timestamp created_at = 6; */
         if (message.createdAt)
             Timestamp.internalBinaryWrite(message.createdAt, writer.tag(6, WireType.LengthDelimited).fork(), options).join();
@@ -405,8 +384,7 @@ class UpsertBrandParams$Type extends MessageType<UpsertBrandParams> {
         super("catalog.UpsertBrandParams", [
             { no: 2, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 3, name: "slug", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 4, name: "is_active", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
-            { no: 5, name: "image_uuid", kind: "scalar", opt: true, T: 12 /*ScalarType.BYTES*/ }
+            { no: 4, name: "is_active", kind: "scalar", T: 8 /*ScalarType.BOOL*/ }
         ]);
     }
     create(value?: PartialMessage<UpsertBrandParams>): UpsertBrandParams {
@@ -432,9 +410,6 @@ class UpsertBrandParams$Type extends MessageType<UpsertBrandParams> {
                 case /* bool is_active */ 4:
                     message.isActive = reader.bool();
                     break;
-                case /* optional bytes image_uuid */ 5:
-                    message.imageUuid = reader.bytes();
-                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -456,9 +431,6 @@ class UpsertBrandParams$Type extends MessageType<UpsertBrandParams> {
         /* bool is_active = 4; */
         if (message.isActive !== false)
             writer.tag(4, WireType.Varint).bool(message.isActive);
-        /* optional bytes image_uuid = 5; */
-        if (message.imageUuid !== undefined)
-            writer.tag(5, WireType.LengthDelimited).bytes(message.imageUuid);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -632,61 +604,6 @@ class UpdateActiveToBrands$Type extends MessageType<UpdateActiveToBrands> {
  * @generated MessageType for protobuf message catalog.UpdateActiveToBrands
  */
 export const UpdateActiveToBrands = new UpdateActiveToBrands$Type();
-// @generated message type with reflection information, may provide speed optimized methods
-class UpdateImageToBrand$Type extends MessageType<UpdateImageToBrand> {
-    constructor() {
-        super("catalog.UpdateImageToBrand", [
-            { no: 1, name: "id", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
-            { no: 5, name: "image_uuid", kind: "scalar", T: 12 /*ScalarType.BYTES*/ }
-        ]);
-    }
-    create(value?: PartialMessage<UpdateImageToBrand>): UpdateImageToBrand {
-        const message = globalThis.Object.create((this.messagePrototype!));
-        message.id = 0;
-        message.imageUuid = new Uint8Array(0);
-        if (value !== undefined)
-            reflectionMergePartial<UpdateImageToBrand>(this, message, value);
-        return message;
-    }
-    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: UpdateImageToBrand): UpdateImageToBrand {
-        let message = target ?? this.create(), end = reader.pos + length;
-        while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
-            switch (fieldNo) {
-                case /* int32 id */ 1:
-                    message.id = reader.int32();
-                    break;
-                case /* bytes image_uuid */ 5:
-                    message.imageUuid = reader.bytes();
-                    break;
-                default:
-                    let u = options.readUnknownField;
-                    if (u === "throw")
-                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
-                    if (u !== false)
-                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
-            }
-        }
-        return message;
-    }
-    internalBinaryWrite(message: UpdateImageToBrand, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* int32 id = 1; */
-        if (message.id !== 0)
-            writer.tag(1, WireType.Varint).int32(message.id);
-        /* bytes image_uuid = 5; */
-        if (message.imageUuid.length)
-            writer.tag(5, WireType.LengthDelimited).bytes(message.imageUuid);
-        let u = options.writeUnknownFields;
-        if (u !== false)
-            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
-        return writer;
-    }
-}
-/**
- * @generated MessageType for protobuf message catalog.UpdateImageToBrand
- */
-export const UpdateImageToBrand = new UpdateImageToBrand$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class GetBrandsPaginateParams$Type extends MessageType<GetBrandsPaginateParams> {
     constructor() {

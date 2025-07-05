@@ -75,15 +75,8 @@ export interface Product {
     /**
      * @generated from protobuf field: catalog.ProductMeta meta = 1
      */
-    meta?: ProductMeta;
-    /**
-     * @generated from protobuf field: repeated catalog.ProductImage images = 2
-     */
-    images: ProductImage[];
-    /**
-     * @generated from protobuf field: repeated catalog.Stock stocks = 3
-     */
-    stocks: Stock[];
+    meta?: ProductMeta; //  repeated ProductImage images = 2;
+    //  repeated Stock stocks = 3;
 }
 /**
  * @generated from protobuf message catalog.ProductShort
@@ -92,11 +85,7 @@ export interface ProductShort {
     /**
      * @generated from protobuf field: catalog.ProductMeta meta = 1
      */
-    meta?: ProductMeta;
-    /**
-     * @generated from protobuf field: bytes image = 2
-     */
-    image: Uint8Array;
+    meta?: ProductMeta; //  bytes image = 2;
 }
 /**
  * @generated from protobuf message catalog.GetProductsMeta
@@ -770,15 +759,11 @@ export const ProductMeta = new ProductMeta$Type();
 class Product$Type extends MessageType<Product> {
     constructor() {
         super("catalog.Product", [
-            { no: 1, name: "meta", kind: "message", T: () => ProductMeta },
-            { no: 2, name: "images", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => ProductImage },
-            { no: 3, name: "stocks", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => Stock }
+            { no: 1, name: "meta", kind: "message", T: () => ProductMeta }
         ]);
     }
     create(value?: PartialMessage<Product>): Product {
         const message = globalThis.Object.create((this.messagePrototype!));
-        message.images = [];
-        message.stocks = [];
         if (value !== undefined)
             reflectionMergePartial<Product>(this, message, value);
         return message;
@@ -790,12 +775,6 @@ class Product$Type extends MessageType<Product> {
             switch (fieldNo) {
                 case /* catalog.ProductMeta meta */ 1:
                     message.meta = ProductMeta.internalBinaryRead(reader, reader.uint32(), options, message.meta);
-                    break;
-                case /* repeated catalog.ProductImage images */ 2:
-                    message.images.push(ProductImage.internalBinaryRead(reader, reader.uint32(), options));
-                    break;
-                case /* repeated catalog.Stock stocks */ 3:
-                    message.stocks.push(Stock.internalBinaryRead(reader, reader.uint32(), options));
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -812,12 +791,6 @@ class Product$Type extends MessageType<Product> {
         /* catalog.ProductMeta meta = 1; */
         if (message.meta)
             ProductMeta.internalBinaryWrite(message.meta, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
-        /* repeated catalog.ProductImage images = 2; */
-        for (let i = 0; i < message.images.length; i++)
-            ProductImage.internalBinaryWrite(message.images[i], writer.tag(2, WireType.LengthDelimited).fork(), options).join();
-        /* repeated catalog.Stock stocks = 3; */
-        for (let i = 0; i < message.stocks.length; i++)
-            Stock.internalBinaryWrite(message.stocks[i], writer.tag(3, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -832,13 +805,11 @@ export const Product = new Product$Type();
 class ProductShort$Type extends MessageType<ProductShort> {
     constructor() {
         super("catalog.ProductShort", [
-            { no: 1, name: "meta", kind: "message", T: () => ProductMeta },
-            { no: 2, name: "image", kind: "scalar", T: 12 /*ScalarType.BYTES*/ }
+            { no: 1, name: "meta", kind: "message", T: () => ProductMeta }
         ]);
     }
     create(value?: PartialMessage<ProductShort>): ProductShort {
         const message = globalThis.Object.create((this.messagePrototype!));
-        message.image = new Uint8Array(0);
         if (value !== undefined)
             reflectionMergePartial<ProductShort>(this, message, value);
         return message;
@@ -850,9 +821,6 @@ class ProductShort$Type extends MessageType<ProductShort> {
             switch (fieldNo) {
                 case /* catalog.ProductMeta meta */ 1:
                     message.meta = ProductMeta.internalBinaryRead(reader, reader.uint32(), options, message.meta);
-                    break;
-                case /* bytes image */ 2:
-                    message.image = reader.bytes();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -869,9 +837,6 @@ class ProductShort$Type extends MessageType<ProductShort> {
         /* catalog.ProductMeta meta = 1; */
         if (message.meta)
             ProductMeta.internalBinaryWrite(message.meta, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
-        /* bytes image = 2; */
-        if (message.image.length)
-            writer.tag(2, WireType.LengthDelimited).bytes(message.image);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

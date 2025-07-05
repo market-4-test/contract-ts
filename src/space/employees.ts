@@ -36,10 +36,8 @@ export interface Employee {
      */
     email: string;
     /**
-     * @generated from protobuf field: optional bytes image_uuid = 6
-     */
-    imageUuid?: Uint8Array;
-    /**
+     *  optional bytes image_uuid = 6;
+     *
      * @generated from protobuf field: google.protobuf.Timestamp created_at = 7
      */
     createdAt?: Timestamp;
@@ -106,11 +104,7 @@ export interface UpdateEmployeeParams {
     /**
      * @generated from protobuf field: string email = 4
      */
-    email: string;
-    /**
-     * @generated from protobuf field: optional bytes image_uuid = 5
-     */
-    imageUuid?: Uint8Array;
+    email: string; //  optional bytes image_uuid = 5;
 }
 /**
  * @generated from protobuf message space.CheckEmployeeAvailableUsernameParams
@@ -139,7 +133,6 @@ class Employee$Type extends MessageType<Employee> {
             { no: 3, name: "first_name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 4, name: "last_name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 5, name: "email", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 6, name: "image_uuid", kind: "scalar", opt: true, T: 12 /*ScalarType.BYTES*/ },
             { no: 7, name: "created_at", kind: "message", T: () => Timestamp },
             { no: 8, name: "updated_at", kind: "message", T: () => Timestamp },
             { no: 9, name: "blocked_at", kind: "message", T: () => Timestamp }
@@ -175,9 +168,6 @@ class Employee$Type extends MessageType<Employee> {
                     break;
                 case /* string email */ 5:
                     message.email = reader.string();
-                    break;
-                case /* optional bytes image_uuid */ 6:
-                    message.imageUuid = reader.bytes();
                     break;
                 case /* google.protobuf.Timestamp created_at */ 7:
                     message.createdAt = Timestamp.internalBinaryRead(reader, reader.uint32(), options, message.createdAt);
@@ -215,9 +205,6 @@ class Employee$Type extends MessageType<Employee> {
         /* string email = 5; */
         if (message.email !== "")
             writer.tag(5, WireType.LengthDelimited).string(message.email);
-        /* optional bytes image_uuid = 6; */
-        if (message.imageUuid !== undefined)
-            writer.tag(6, WireType.LengthDelimited).bytes(message.imageUuid);
         /* google.protobuf.Timestamp created_at = 7; */
         if (message.createdAt)
             Timestamp.internalBinaryWrite(message.createdAt, writer.tag(7, WireType.LengthDelimited).fork(), options).join();
@@ -400,8 +387,7 @@ class UpdateEmployeeParams$Type extends MessageType<UpdateEmployeeParams> {
             { no: 1, name: "id", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
             { no: 2, name: "first_name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 3, name: "last_name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 4, name: "email", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 5, name: "image_uuid", kind: "scalar", opt: true, T: 12 /*ScalarType.BYTES*/ }
+            { no: 4, name: "email", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value?: PartialMessage<UpdateEmployeeParams>): UpdateEmployeeParams {
@@ -431,9 +417,6 @@ class UpdateEmployeeParams$Type extends MessageType<UpdateEmployeeParams> {
                 case /* string email */ 4:
                     message.email = reader.string();
                     break;
-                case /* optional bytes image_uuid */ 5:
-                    message.imageUuid = reader.bytes();
-                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -458,9 +441,6 @@ class UpdateEmployeeParams$Type extends MessageType<UpdateEmployeeParams> {
         /* string email = 4; */
         if (message.email !== "")
             writer.tag(4, WireType.LengthDelimited).string(message.email);
-        /* optional bytes image_uuid = 5; */
-        if (message.imageUuid !== undefined)
-            writer.tag(5, WireType.LengthDelimited).bytes(message.imageUuid);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

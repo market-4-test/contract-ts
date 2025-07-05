@@ -43,10 +43,8 @@ export interface Category {
      */
     orderSort: number;
     /**
-     * @generated from protobuf field: optional bytes image_uuid = 7
-     */
-    imageUuid?: Uint8Array;
-    /**
+     *  optional bytes image_uuid = 7;
+     *
      * @generated from protobuf field: google.protobuf.Timestamp created_at = 8
      */
     createdAt?: Timestamp;
@@ -70,11 +68,7 @@ export interface CategoryShort {
     /**
      * @generated from protobuf field: string slug = 3
      */
-    slug: string;
-    /**
-     * @generated from protobuf field: optional bytes image_uuid = 4
-     */
-    imageUuid?: Uint8Array;
+    slug: string; //  optional bytes image_uuid = 4;
 }
 /**
  * @generated from protobuf message catalog.UpsertCategoryParams
@@ -95,11 +89,7 @@ export interface UpsertCategoryParams {
     /**
      * @generated from protobuf field: bool is_active = 4
      */
-    isActive: boolean;
-    /**
-     * @generated from protobuf field: optional bytes image_uuid = 5
-     */
-    imageUuid?: Uint8Array;
+    isActive: boolean; //  optional bytes image_uuid = 5;
 }
 /**
  * @generated from protobuf message catalog.CreateCategoryParams
@@ -165,11 +155,7 @@ export interface SetImageToCategoryParams {
     /**
      * @generated from protobuf field: int32 id = 1
      */
-    id: number;
-    /**
-     * @generated from protobuf field: bytes image_uuid = 2
-     */
-    imageUuid: Uint8Array;
+    id: number; //  bytes image_uuid = 2;
 }
 /**
  * @generated from protobuf message catalog.OrderSortCategory
@@ -323,7 +309,6 @@ class Category$Type extends MessageType<Category> {
             { no: 4, name: "slug", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 5, name: "is_active", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
             { no: 6, name: "order_sort", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
-            { no: 7, name: "image_uuid", kind: "scalar", opt: true, T: 12 /*ScalarType.BYTES*/ },
             { no: 8, name: "created_at", kind: "message", T: () => Timestamp },
             { no: 9, name: "updated_at", kind: "message", T: () => Timestamp }
         ]);
@@ -362,9 +347,6 @@ class Category$Type extends MessageType<Category> {
                 case /* int32 order_sort */ 6:
                     message.orderSort = reader.int32();
                     break;
-                case /* optional bytes image_uuid */ 7:
-                    message.imageUuid = reader.bytes();
-                    break;
                 case /* google.protobuf.Timestamp created_at */ 8:
                     message.createdAt = Timestamp.internalBinaryRead(reader, reader.uint32(), options, message.createdAt);
                     break;
@@ -401,9 +383,6 @@ class Category$Type extends MessageType<Category> {
         /* int32 order_sort = 6; */
         if (message.orderSort !== 0)
             writer.tag(6, WireType.Varint).int32(message.orderSort);
-        /* optional bytes image_uuid = 7; */
-        if (message.imageUuid !== undefined)
-            writer.tag(7, WireType.LengthDelimited).bytes(message.imageUuid);
         /* google.protobuf.Timestamp created_at = 8; */
         if (message.createdAt)
             Timestamp.internalBinaryWrite(message.createdAt, writer.tag(8, WireType.LengthDelimited).fork(), options).join();
@@ -426,8 +405,7 @@ class CategoryShort$Type extends MessageType<CategoryShort> {
         super("catalog.CategoryShort", [
             { no: 1, name: "id", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
             { no: 2, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 3, name: "slug", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 4, name: "image_uuid", kind: "scalar", opt: true, T: 12 /*ScalarType.BYTES*/ }
+            { no: 3, name: "slug", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value?: PartialMessage<CategoryShort>): CategoryShort {
@@ -453,9 +431,6 @@ class CategoryShort$Type extends MessageType<CategoryShort> {
                 case /* string slug */ 3:
                     message.slug = reader.string();
                     break;
-                case /* optional bytes image_uuid */ 4:
-                    message.imageUuid = reader.bytes();
-                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -477,9 +452,6 @@ class CategoryShort$Type extends MessageType<CategoryShort> {
         /* string slug = 3; */
         if (message.slug !== "")
             writer.tag(3, WireType.LengthDelimited).string(message.slug);
-        /* optional bytes image_uuid = 4; */
-        if (message.imageUuid !== undefined)
-            writer.tag(4, WireType.LengthDelimited).bytes(message.imageUuid);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -497,8 +469,7 @@ class UpsertCategoryParams$Type extends MessageType<UpsertCategoryParams> {
             { no: 1, name: "parent_id", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
             { no: 2, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 3, name: "slug", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 4, name: "is_active", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
-            { no: 5, name: "image_uuid", kind: "scalar", opt: true, T: 12 /*ScalarType.BYTES*/ }
+            { no: 4, name: "is_active", kind: "scalar", T: 8 /*ScalarType.BOOL*/ }
         ]);
     }
     create(value?: PartialMessage<UpsertCategoryParams>): UpsertCategoryParams {
@@ -527,9 +498,6 @@ class UpsertCategoryParams$Type extends MessageType<UpsertCategoryParams> {
                 case /* bool is_active */ 4:
                     message.isActive = reader.bool();
                     break;
-                case /* optional bytes image_uuid */ 5:
-                    message.imageUuid = reader.bytes();
-                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -554,9 +522,6 @@ class UpsertCategoryParams$Type extends MessageType<UpsertCategoryParams> {
         /* bool is_active = 4; */
         if (message.isActive !== false)
             writer.tag(4, WireType.Varint).bool(message.isActive);
-        /* optional bytes image_uuid = 5; */
-        if (message.imageUuid !== undefined)
-            writer.tag(5, WireType.LengthDelimited).bytes(message.imageUuid);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -836,14 +801,12 @@ export const CheckAvailableSlugParams = new CheckAvailableSlugParams$Type();
 class SetImageToCategoryParams$Type extends MessageType<SetImageToCategoryParams> {
     constructor() {
         super("catalog.SetImageToCategoryParams", [
-            { no: 1, name: "id", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
-            { no: 2, name: "image_uuid", kind: "scalar", T: 12 /*ScalarType.BYTES*/ }
+            { no: 1, name: "id", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
         ]);
     }
     create(value?: PartialMessage<SetImageToCategoryParams>): SetImageToCategoryParams {
         const message = globalThis.Object.create((this.messagePrototype!));
         message.id = 0;
-        message.imageUuid = new Uint8Array(0);
         if (value !== undefined)
             reflectionMergePartial<SetImageToCategoryParams>(this, message, value);
         return message;
@@ -855,9 +818,6 @@ class SetImageToCategoryParams$Type extends MessageType<SetImageToCategoryParams
             switch (fieldNo) {
                 case /* int32 id */ 1:
                     message.id = reader.int32();
-                    break;
-                case /* bytes image_uuid */ 2:
-                    message.imageUuid = reader.bytes();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -874,9 +834,6 @@ class SetImageToCategoryParams$Type extends MessageType<SetImageToCategoryParams
         /* int32 id = 1; */
         if (message.id !== 0)
             writer.tag(1, WireType.Varint).int32(message.id);
-        /* bytes image_uuid = 2; */
-        if (message.imageUuid.length)
-            writer.tag(2, WireType.LengthDelimited).bytes(message.imageUuid);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
