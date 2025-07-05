@@ -300,18 +300,18 @@ export interface StatusCategory {
  */
 export interface DeleteCategoriesResponse {
     /**
-     * @generated from protobuf field: catalog.StatusCategory list = 1
+     * @generated from protobuf field: repeated catalog.StatusCategory list = 1
      */
-    list?: StatusCategory;
+    list: StatusCategory[];
 }
 /**
  * @generated from protobuf message catalog.UpdateOrderSortToCategoriesResponse
  */
 export interface UpdateOrderSortToCategoriesResponse {
     /**
-     * @generated from protobuf field: catalog.StatusCategory list = 1
+     * @generated from protobuf field: repeated catalog.StatusCategory list = 1
      */
-    list?: StatusCategory;
+    list: StatusCategory[];
 }
 // @generated message type with reflection information, may provide speed optimized methods
 class Category$Type extends MessageType<Category> {
@@ -1482,11 +1482,12 @@ export const StatusCategory = new StatusCategory$Type();
 class DeleteCategoriesResponse$Type extends MessageType<DeleteCategoriesResponse> {
     constructor() {
         super("catalog.DeleteCategoriesResponse", [
-            { no: 1, name: "list", kind: "message", T: () => StatusCategory }
+            { no: 1, name: "list", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => StatusCategory }
         ]);
     }
     create(value?: PartialMessage<DeleteCategoriesResponse>): DeleteCategoriesResponse {
         const message = globalThis.Object.create((this.messagePrototype!));
+        message.list = [];
         if (value !== undefined)
             reflectionMergePartial<DeleteCategoriesResponse>(this, message, value);
         return message;
@@ -1496,8 +1497,8 @@ class DeleteCategoriesResponse$Type extends MessageType<DeleteCategoriesResponse
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* catalog.StatusCategory list */ 1:
-                    message.list = StatusCategory.internalBinaryRead(reader, reader.uint32(), options, message.list);
+                case /* repeated catalog.StatusCategory list */ 1:
+                    message.list.push(StatusCategory.internalBinaryRead(reader, reader.uint32(), options));
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -1511,9 +1512,9 @@ class DeleteCategoriesResponse$Type extends MessageType<DeleteCategoriesResponse
         return message;
     }
     internalBinaryWrite(message: DeleteCategoriesResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* catalog.StatusCategory list = 1; */
-        if (message.list)
-            StatusCategory.internalBinaryWrite(message.list, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* repeated catalog.StatusCategory list = 1; */
+        for (let i = 0; i < message.list.length; i++)
+            StatusCategory.internalBinaryWrite(message.list[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -1528,11 +1529,12 @@ export const DeleteCategoriesResponse = new DeleteCategoriesResponse$Type();
 class UpdateOrderSortToCategoriesResponse$Type extends MessageType<UpdateOrderSortToCategoriesResponse> {
     constructor() {
         super("catalog.UpdateOrderSortToCategoriesResponse", [
-            { no: 1, name: "list", kind: "message", T: () => StatusCategory }
+            { no: 1, name: "list", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => StatusCategory }
         ]);
     }
     create(value?: PartialMessage<UpdateOrderSortToCategoriesResponse>): UpdateOrderSortToCategoriesResponse {
         const message = globalThis.Object.create((this.messagePrototype!));
+        message.list = [];
         if (value !== undefined)
             reflectionMergePartial<UpdateOrderSortToCategoriesResponse>(this, message, value);
         return message;
@@ -1542,8 +1544,8 @@ class UpdateOrderSortToCategoriesResponse$Type extends MessageType<UpdateOrderSo
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* catalog.StatusCategory list */ 1:
-                    message.list = StatusCategory.internalBinaryRead(reader, reader.uint32(), options, message.list);
+                case /* repeated catalog.StatusCategory list */ 1:
+                    message.list.push(StatusCategory.internalBinaryRead(reader, reader.uint32(), options));
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -1557,9 +1559,9 @@ class UpdateOrderSortToCategoriesResponse$Type extends MessageType<UpdateOrderSo
         return message;
     }
     internalBinaryWrite(message: UpdateOrderSortToCategoriesResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* catalog.StatusCategory list = 1; */
-        if (message.list)
-            StatusCategory.internalBinaryWrite(message.list, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* repeated catalog.StatusCategory list = 1; */
+        for (let i = 0; i < message.list.length; i++)
+            StatusCategory.internalBinaryWrite(message.list[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
