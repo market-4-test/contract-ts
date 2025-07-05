@@ -216,9 +216,9 @@ export interface GetCategoriesPaginateResponse {
     meta?: PaginateMeta;
 }
 /**
- * @generated from protobuf message catalog.GetCategoriesPaginateShortResponse
+ * @generated from protobuf message catalog.GetCategoriesShortPaginateResponse
  */
-export interface GetCategoriesPaginateShortResponse {
+export interface GetCategoriesShortPaginateResponse {
     /**
      * @generated from protobuf field: repeated catalog.CategoryShort list = 1
      */
@@ -1090,21 +1090,21 @@ class GetCategoriesPaginateResponse$Type extends MessageType<GetCategoriesPagina
  */
 export const GetCategoriesPaginateResponse = new GetCategoriesPaginateResponse$Type();
 // @generated message type with reflection information, may provide speed optimized methods
-class GetCategoriesPaginateShortResponse$Type extends MessageType<GetCategoriesPaginateShortResponse> {
+class GetCategoriesShortPaginateResponse$Type extends MessageType<GetCategoriesShortPaginateResponse> {
     constructor() {
-        super("catalog.GetCategoriesPaginateShortResponse", [
+        super("catalog.GetCategoriesShortPaginateResponse", [
             { no: 1, name: "list", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => CategoryShort },
             { no: 2, name: "meta", kind: "message", T: () => PaginateMeta }
         ]);
     }
-    create(value?: PartialMessage<GetCategoriesPaginateShortResponse>): GetCategoriesPaginateShortResponse {
+    create(value?: PartialMessage<GetCategoriesShortPaginateResponse>): GetCategoriesShortPaginateResponse {
         const message = globalThis.Object.create((this.messagePrototype!));
         message.list = [];
         if (value !== undefined)
-            reflectionMergePartial<GetCategoriesPaginateShortResponse>(this, message, value);
+            reflectionMergePartial<GetCategoriesShortPaginateResponse>(this, message, value);
         return message;
     }
-    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: GetCategoriesPaginateShortResponse): GetCategoriesPaginateShortResponse {
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: GetCategoriesShortPaginateResponse): GetCategoriesShortPaginateResponse {
         let message = target ?? this.create(), end = reader.pos + length;
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
@@ -1126,7 +1126,7 @@ class GetCategoriesPaginateShortResponse$Type extends MessageType<GetCategoriesP
         }
         return message;
     }
-    internalBinaryWrite(message: GetCategoriesPaginateShortResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+    internalBinaryWrite(message: GetCategoriesShortPaginateResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
         /* repeated catalog.CategoryShort list = 1; */
         for (let i = 0; i < message.list.length; i++)
             CategoryShort.internalBinaryWrite(message.list[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
@@ -1140,9 +1140,9 @@ class GetCategoriesPaginateShortResponse$Type extends MessageType<GetCategoriesP
     }
 }
 /**
- * @generated MessageType for protobuf message catalog.GetCategoriesPaginateShortResponse
+ * @generated MessageType for protobuf message catalog.GetCategoriesShortPaginateResponse
  */
-export const GetCategoriesPaginateShortResponse = new GetCategoriesPaginateShortResponse$Type();
+export const GetCategoriesShortPaginateResponse = new GetCategoriesShortPaginateResponse$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class GetCategoriesOffsetParams$Type extends MessageType<GetCategoriesOffsetParams> {
     constructor() {

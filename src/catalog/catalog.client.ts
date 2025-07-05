@@ -41,7 +41,7 @@ import type { GetCategoriesShortOffsetResponse } from "./categories";
 import type { GetCategoriesShortOffsetParams } from "./categories";
 import type { GetCategoriesOffsetResponse } from "./categories";
 import type { GetCategoriesOffsetParams } from "./categories";
-import type { GetCategoriesPaginateShortResponse } from "./categories";
+import type { GetCategoriesShortPaginateResponse } from "./categories";
 import type { GetCategoriesPaginateResponse } from "./categories";
 import type { GetCategoriesPaginateParams } from "./categories";
 import type { DeleteBrandsResponse } from "./brands";
@@ -170,7 +170,7 @@ export interface ICatalogClient {
     /**
      * @generated from protobuf rpc: GetCategoriesShortPaginate
      */
-    getCategoriesShortPaginate(input: GetCategoriesPaginateParams, options?: RpcOptions): UnaryCall<GetCategoriesPaginateParams, GetCategoriesPaginateShortResponse>;
+    getCategoriesShortPaginate(input: GetCategoriesPaginateParams, options?: RpcOptions): UnaryCall<GetCategoriesPaginateParams, GetCategoriesShortPaginateResponse>;
     /**
      * @generated from protobuf rpc: GetCategoriesOffset
      */
@@ -433,9 +433,9 @@ export class CatalogClient implements ICatalogClient, ServiceInfo {
     /**
      * @generated from protobuf rpc: GetCategoriesShortPaginate
      */
-    getCategoriesShortPaginate(input: GetCategoriesPaginateParams, options?: RpcOptions): UnaryCall<GetCategoriesPaginateParams, GetCategoriesPaginateShortResponse> {
+    getCategoriesShortPaginate(input: GetCategoriesPaginateParams, options?: RpcOptions): UnaryCall<GetCategoriesPaginateParams, GetCategoriesShortPaginateResponse> {
         const method = this.methods[19], opt = this._transport.mergeOptions(options);
-        return stackIntercept<GetCategoriesPaginateParams, GetCategoriesPaginateShortResponse>("unary", this._transport, method, opt, input);
+        return stackIntercept<GetCategoriesPaginateParams, GetCategoriesShortPaginateResponse>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: GetCategoriesOffset
