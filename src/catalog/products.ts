@@ -468,9 +468,9 @@ export interface ToggleAttachProductsToCategories {
      */
     productUuids: Uint8Array[];
     /**
-     * @generated from protobuf field: repeated bytes category_ids = 2
+     * @generated from protobuf field: repeated int32 category_ids = 2
      */
-    categoryIds: Uint8Array[];
+    categoryIds: number[];
 }
 /**
  * @generated from protobuf message catalog.ToggleAttachProductsToCategoryParams
@@ -2451,7 +2451,7 @@ class ToggleAttachProductsToCategories$Type extends MessageType<ToggleAttachProd
     constructor() {
         super("catalog.ToggleAttachProductsToCategories", [
             { no: 1, name: "product_uuids", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 12 /*ScalarType.BYTES*/ },
-            { no: 2, name: "category_ids", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 12 /*ScalarType.BYTES*/ }
+            { no: 2, name: "category_ids", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 5 /*ScalarType.INT32*/ }
         ]);
     }
     create(value?: PartialMessage<ToggleAttachProductsToCategories>): ToggleAttachProductsToCategories {
@@ -2470,8 +2470,12 @@ class ToggleAttachProductsToCategories$Type extends MessageType<ToggleAttachProd
                 case /* repeated bytes product_uuids */ 1:
                     message.productUuids.push(reader.bytes());
                     break;
-                case /* repeated bytes category_ids */ 2:
-                    message.categoryIds.push(reader.bytes());
+                case /* repeated int32 category_ids */ 2:
+                    if (wireType === WireType.LengthDelimited)
+                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
+                            message.categoryIds.push(reader.int32());
+                    else
+                        message.categoryIds.push(reader.int32());
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -2488,9 +2492,13 @@ class ToggleAttachProductsToCategories$Type extends MessageType<ToggleAttachProd
         /* repeated bytes product_uuids = 1; */
         for (let i = 0; i < message.productUuids.length; i++)
             writer.tag(1, WireType.LengthDelimited).bytes(message.productUuids[i]);
-        /* repeated bytes category_ids = 2; */
-        for (let i = 0; i < message.categoryIds.length; i++)
-            writer.tag(2, WireType.LengthDelimited).bytes(message.categoryIds[i]);
+        /* repeated int32 category_ids = 2; */
+        if (message.categoryIds.length) {
+            writer.tag(2, WireType.LengthDelimited).fork();
+            for (let i = 0; i < message.categoryIds.length; i++)
+                writer.int32(message.categoryIds[i]);
+            writer.join();
+        }
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
